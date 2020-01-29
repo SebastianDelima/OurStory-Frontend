@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import * as actions from './actionsDirectory/actions';
 
 import './App.css';
-import { SET_USERS } from './actionsDirectory/constants';
 
 class App extends Component {
 
   componentDidMount = () => {
    this.props.setUsers()
+   this.props.setStories()
   }
 
 
@@ -18,7 +18,11 @@ class App extends Component {
     <div >hello
      { 
     //  this.props.users[0].name
-       this.props.users.length === 0 ? <h1>loading...</h1> : this.props.users[0].name
+       this.props.users.length === 0  ? <h1>loading...</h1> : 
+       <div>
+         <h1>{this.props.users[0].name}</h1>
+         <h1>{this.props.stories[0].title}</h1>
+       </div>
       }
     </div>
 
@@ -31,16 +35,19 @@ class App extends Component {
 const mapDispatchToProps = (dispatch) => {
 
    return {
-     setUsers: () => dispatch(actions.getUsers())
-     
+
+     setUsers: ()   => dispatch(actions.getUsers()),
+     setStories: () => dispatch(actions.setStories())
 
    }
+
 }
 
 const mapStateToProps = (state) => {
 
   return {
-    users: state.users
+    users:   state.users,
+    stories: state.stories
   }
 
 }
