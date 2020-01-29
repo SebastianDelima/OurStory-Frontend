@@ -1,5 +1,12 @@
-import{SET_USERS} from './constants'
+import{SET_USERS, SET_USERS_REQUEST} from './constants'
 
 export function getUsers(){
-    return{type: SET_USERS, users: []}
+    return (dispatch) => {
+        dispatch({type: SET_USERS_REQUEST});
+        fetch('http://localhost:3000/users')
+        .then(res => res.json())
+        .then(users => dispatch({ type: SET_USERS, users}))
+    }
 }
+
+

@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from './actionsDirectory/actions';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import './App.css';
+import { SET_USERS } from './actionsDirectory/constants';
+
+class App extends Component {
+
+  componentDidMount = () => {
+   this.props.setUsers()
+  }
+
+
+  render(){
+ debugger
+    return (
+    <div >hello
+     { 
+    //  this.props.users[0].name
+       this.props.users.length === 0 ? <h1>loading...</h1> : this.props.users[0].name
+      }
     </div>
-  );
+
+    )
+
+  }
+
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+
+   return {
+     setUsers: () => dispatch(actions.getUsers())
+     
+
+   }
+}
+
+const mapStateToProps = (state) => {
+
+  return {
+    users: state.users
+  }
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
