@@ -12,6 +12,13 @@ const setUsers = (state = [], action) => {
     }
 }
 
+const setCurrentUser = (state = null, action) => {
+    switch(action.type){
+        default:
+            return state
+    }
+}
+
 const setStories = (state = [], action) => {
     switch(action.type){
         case SET_STORIES_REQUEST:
@@ -23,12 +30,13 @@ const setStories = (state = [], action) => {
     }
 }
 
+
 const rootReducer = combineReducers({
 
      users:       setUsers,
+     currentUser: setCurrentUser,
     //  userStories: setUserStories,
      stories:     setStories
-    //  currentUser: setCurrentUser,
 
   });
 
