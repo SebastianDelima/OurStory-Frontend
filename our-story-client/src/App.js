@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as actions from './actionsDirectory/actions';
-
+import { connect }          from 'react-redux';
+import * as actions         from './actionsDirectory/actions';
+import { welcomeContainer } from './conatainers/welcomeContainer'
+import HomeContainer        from './conatainers/homeContainer'
+import  UserContainer       from './conatainers/UserContainer'
 import './App.css';
+import { Switch, Route }    from 'react-router-dom';
 
 class App extends Component {
 
@@ -13,18 +16,14 @@ class App extends Component {
 
 
   render(){
- debugger
+  
     return (
-    <div >hello
-     { 
-    //  this.props.users[0].name
-       this.props.users.length === 0  ? <h1>loading...</h1> : 
-       <div>
-         <h1>{this.props.users[0].name}</h1>
-         <h1>{this.props.stories[0].title}</h1>
-       </div>
-      }
-    </div>
+      <Switch>
+        <Route exact path='/'     component={welcomeContainer}/>
+        <Route exact path='/home' component={HomeContainer}/>
+        <Route exact path='/user' component={UserContainer}/>
+      </Switch>
+  
 
     )
 
@@ -44,12 +43,26 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-
+ 
   return {
-    users:   state.users,
-    stories: state.stories
+    users:       state.users,
+    stories:     state.stories,
+    currentuser: state.currentUser
   }
 
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+
+{/* <Switch>
+      <Route exact path='/'           component={Welcome}/>
+
+      <Route exact path='/hat'        render={()=> this.state.validName   ? <Hat setCurrentUser={this.setCurrentUserSignUp} userName={this.state.logInUser}/>  : <Redirect to ='signup'/>}/>
+      <Route exact path='/favorites'  render={()=> this.state.currentUser ? <FavoritesContainer updateUsers={this.updateUsers} characters={this.state.characters} currentUser={this.state.currentUser}/> : <Redirect to ="/login"/>}/>
+      <Route exact path='/main'       render={()=> this.state.currentUser ? <Main userInfo={this.state.currentUser}/> : <Redirect to ="/login"/>}/> 
+      <Route exact path='/login'      render={()=> this.state.currentUser ? <Redirect to ='/main'/> : <Login setCurrentUser={this.setCurrentUser} setLogInUser={this.setLogInUser}/>} /> 
+      <Route exact path='/signup'     render={()=> this.state.currentUser ? <Redirect to ='/main'/> : <SignUp signUp={this.signUp} setLogInUser={this.setLogInUser} user={this.state.logInUser}/> } />
+      <Route exact path='/characters' render={()=> this.state.currentUser ? <CharacterContainer updateUsers={this.updateUsers} currentUser={this.state.currentUser} characters={this.state.characters} /> :  <Redirect to ="/login"/>} /> 
+      <Route exact path='/spells'     render={()=> this.state.currentUser ? <SpellsContainer updateUsers={this.updateUsers} currentUser={this.state.currentUser} spells={this.state.spells} /> : <Redirect to ="/login"/>} />
+    </Switch> */}

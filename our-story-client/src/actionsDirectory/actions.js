@@ -1,4 +1,4 @@
-import{SET_USERS, SET_USERS_REQUEST, SET_STORIES, SET_STORIES_REQUEST} from './constants'
+import{SET_USERS, SET_USERS_REQUEST, SET_STORIES, SET_STORIES_REQUEST, SET_CURRENT_USER} from './constants'
 
 export function getUsers(){
     return (dispatch) => {
@@ -7,6 +7,10 @@ export function getUsers(){
         .then(res => res.json())
         .then(users => dispatch({ type: SET_USERS, users}))
     }
+}
+
+export function setCurrentUser(user){
+    return {type: SET_CURRENT_USER, user: user}
 }
 
 export function setStories(){
