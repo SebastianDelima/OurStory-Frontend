@@ -4,23 +4,10 @@
 }
 
 body{
-  background-color: darkslateblue;
-}
-
-
-@media (prefers-reduced-motion: no-preference) {
-  div {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  background-color: seashell;
+  
 }
 
 
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(350deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+

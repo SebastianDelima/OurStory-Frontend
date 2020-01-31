@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
             Sign up here!
             <Link to='home'  onClick ={e => props.showModal(e, 'submit')}>Sign Up</Link>
             <button onClick ={e => props.showModal(e, 'submit')}>back</button>
+            
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
+import StoryCard            from '../components/StoryCard'
 
 
 class UserContainer extends Component {
@@ -12,16 +13,17 @@ class UserContainer extends Component {
         return(
             <div>
                 inside of user container
+                <StoryCard/>
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) =>{
-    console.log("im here")
-  debugger
+   
     return {
-        stories: state.stories
+        stories:     state.stories,
+        currentUser: state.currentUser
     }
 
 }

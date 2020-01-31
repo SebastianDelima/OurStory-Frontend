@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 
- const LoginModal = (props) => {
-    return (
-        <div>
-            Log in here!
-            <Link to='/home' onClick ={e => props.showModal(e, 'submit')}>Log in</Link>
-            <button onClick ={e => props.showModal(e, 'submit')}>back</button>
+ class LoginModal extends Component {
 
-        </div>
+    
+
+    changeImage = (e) => {
+      debugger
+    }
+   
+render(){
+    return (
+       
+           <></>
+       /* <input type="file" accept="image/*" multiple = "false" onChange={(e) => {this.changeImage(e)}}/>
+       <Link to='/home' onClick ={e => this.props.showModal(e, 'submit')}>Log in</Link>
+       <button onClick ={e => this.props.showModal(e, 'submit')}>back</button> */
     )
+}
 }
 
 export default LoginModal
+
