@@ -1,12 +1,11 @@
-import React, { Component, Fragment } from 'react';
-import { connect }          from 'react-redux';
-import * as actions         from './actionsDirectory/actions';
-import { welcomeContainer } from './conatainers/welcomeContainer'
-import HomeContainer        from './conatainers/homeContainer'
-import  UserContainer       from './conatainers/UserContainer'
-import NavBar               from './components/NavBar'
-import './App.css';
-import { Switch, Route }    from 'react-router-dom';
+import     React, { Component, Fragment } from 'react';
+import     { connect }                    from 'react-redux';
+import     * as actions                   from './actionsDirectory/actions';
+import     welcomeContainer               from './conatainers/welcomeContainer'
+import     HomeContainer                  from './conatainers/homeContainer'
+import     UserContainer                  from './conatainers/UserContainer'
+import     { Switch, Route }              from 'react-router-dom';
+import     './App.css'; 
 
 class App extends Component {
 
@@ -20,7 +19,6 @@ class App extends Component {
   
     return (
       <Fragment>
-        <NavBar/>
       <Switch>
         <Route exact path='/'     component={welcomeContainer}/>
         <Route exact path='/home' component={HomeContainer}/>
@@ -39,7 +37,7 @@ const mapDispatchToProps = (dispatch) => {
 
    return {
 
-     setUsers: ()   => dispatch(actions.getUsers()),
+     setUsers:   () => dispatch(actions.getUsers()),
      setStories: () => dispatch(actions.setStories())
 
    }

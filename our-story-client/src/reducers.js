@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SET_USERS, SET_USERS_REQUEST, SET_STORIES, SET_STORIES_REQUEST  } from './actionsDirectory/constants';
+import { SET_USERS, SET_USERS_REQUEST, SET_STORIES, SET_STORIES_REQUEST, SET_CURRENT_USER } from './actionsDirectory/constants';
 
 const setUsers = (state = [], action) => {
     switch(action.type){
@@ -14,6 +14,8 @@ const setUsers = (state = [], action) => {
 
 const setCurrentUser = (state = null, action) => {
     switch(action.type){
+        case SET_CURRENT_USER:
+           return action.user
         default:
             return state
     }
