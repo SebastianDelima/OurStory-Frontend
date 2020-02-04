@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { NavLink }          from 'react-router-dom';
 
 export default class HomeStoryTile extends Component{
     render(){
         return(
-       
-        <div className="card mb-3" >
+       <NavLink to={`/stories/${this.props.story.id}`}>
+        <div className="card mb-3" key={this.props.story.id} >
             <div className="row no-gutters">
                 <div className="col-md-4">
                 <img src={this.props.story.image} id ='homeCardImg' class="card-img" alt="..."/>
@@ -18,6 +19,7 @@ export default class HomeStoryTile extends Component{
                  </div>
             </div>
         </div>
+        </NavLink>
 
         )
     }

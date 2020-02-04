@@ -5,6 +5,7 @@ import     welcomeContainer               from './conatainers/welcomeContainer'
 import     HomeContainer                  from './conatainers/homeContainer'
 import     UserContainer                  from './conatainers/UserContainer'
 import     newStoryContainer              from './conatainers/newStoryContainer'
+import     storyDetails                   from './components/storyDetails'
 import     { Switch, Route }              from 'react-router-dom';
 import     './App.css'; 
 
@@ -21,10 +22,11 @@ class App extends Component {
     return (
       <Fragment>
       <Switch>
-        <Route exact path='/'     component={welcomeContainer}/>
-        <Route exact path='/new'  component={newStoryContainer}/>
-        <Route exact path='/home' component={HomeContainer}/>
-        <Route exact path='/user' component={UserContainer}/>
+        <Route exact path='/'             component={welcomeContainer}/>
+        <Route exact path='/new'          component={newStoryContainer}/>
+        <Route exact path='/home'         component={HomeContainer}/>
+        <Route exact path='/user'         component={UserContainer}/>
+        <Route exact path='/stories/:id'  component={storyDetails}/>
       </Switch>
       </Fragment>
   
