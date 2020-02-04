@@ -72,7 +72,7 @@ import { connect } from 'react-redux';
       }
 
         const postStoryPoint = (user_id, story_id) => {
-            
+
             let objectConfig3 = {
                 method: 'POST',
                 headers: {
@@ -92,6 +92,9 @@ import { connect } from 'react-redux';
          }
      }
     
+     componentDidMount() {
+        window.scrollTo(0, 0);
+    }
 
     render(){
         return (
