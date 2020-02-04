@@ -72,7 +72,7 @@ import { connect } from 'react-redux';
       }
 
         const postStoryPoint = (user_id, story_id) => {
-
+           
             let objectConfig3 = {
                 method: 'POST',
                 headers: {
@@ -81,6 +81,7 @@ import { connect } from 'react-redux';
                 body: JSON.stringify({
                 user_id: user_id,
                 story_id: story_id,
+                user_name: this.props.currentUser.name,
                 content: this.state.content
                 })
             }
