@@ -17,20 +17,20 @@ class NavBar extends Component{
             <div id='searchInput'>
                 
                 <img id='search' src='https://cdn4.iconfinder.com/data/icons/basic-user-interface-2/512/User_Interface-25-512.png' alt='nada'/>
-
+                </div>
                 
-                <div class="dropdown show">
+                <div id= 'profPicDiv' class="dropdown show">
                     <img data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                     id='navProfilePic' 
                     src='https://i.imgur.com/e225YR5.jpg' 
                     className="rounded-circle" 
                     alt='Your image is supposed to be here'/>
 
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+                <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a className="dropdown-item" href="/profile">Profile</a>
+                    <a className="dropdown-item" href="/friends">Friends</a>
+                    <a className="dropdown-item" href="/MyStories">Stories</a>
+               
                 </div>
                 </div>
            

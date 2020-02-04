@@ -4,6 +4,7 @@ import     * as actions                   from './actionsDirectory/actions';
 import     welcomeContainer               from './conatainers/welcomeContainer'
 import     HomeContainer                  from './conatainers/homeContainer'
 import     UserContainer                  from './conatainers/UserContainer'
+import     newStoryContainer              from './conatainers/newStoryContainer'
 import     { Switch, Route }              from 'react-router-dom';
 import     './App.css'; 
 
@@ -21,6 +22,7 @@ class App extends Component {
       <Fragment>
       <Switch>
         <Route exact path='/'     component={welcomeContainer}/>
+        <Route exact path='/new'  component={newStoryContainer}/>
         <Route exact path='/home' component={HomeContainer}/>
         <Route exact path='/user' component={UserContainer}/>
       </Switch>

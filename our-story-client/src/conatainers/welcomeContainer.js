@@ -50,16 +50,17 @@ import Swal from 'sweetalert2'
         }
       }
     
-    logInUser = () => {
-         
+    logInUser = (e) => {
+      
         let findUser = this.props.users.find(user => user.name === this.state.userInfo.name)
-
+    
         if(findUser !== undefined){
             this.props.setCurrentUser(findUser)
         }else{
+          e.preventDefault()
             Swal.fire({
                 title: 'Error!',
-                text: 'Do you want to continue',
+                text: 'Wrong Username!',
                 icon: 'error',
                 confirmButtonText: 'Cool'
               })
@@ -90,7 +91,7 @@ import Swal from 'sweetalert2'
       
 
     render(){
-
+          
         return (
             <Fragment>
         <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
@@ -143,8 +144,8 @@ import Swal from 'sweetalert2'
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-              <div onClick={() => this.logInUser()}>
-              <NavLink to='/home'  className="glyphicon glyphicon-lock"  type="submit" >Log in</NavLink>
+              <div onClick={(e) => this.logInUser(e)}>
+              <NavLink to='/home'  className="glyphicon glyphicon-lock" onClick={(e) => this.logInUser(e)} >Log in</NavLink>
               </div>
             </div>
           </div>
