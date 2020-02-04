@@ -1,18 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import     { connect }                    from 'react-redux';
 
 
 class storyDetails extends Component{
 
-    constructor(){
-        super()
-        this.state = {
-            title: null,
-            image: null,
-            descrption: null
-        }
-    }
-    
 
     componentDidMount() {
         window.scrollTo(0, 0);
@@ -28,15 +19,24 @@ class storyDetails extends Component{
        
 
         return(
-       
+       <Fragment>
             <div className="card">
             <img src='..' alt="Avatar" />
             <div className="container">
               <h4><b>{story.title}</b></h4>
-              <p>hello</p>
+        {story.story_points.map(point =>{
+            return (
+            <div>
+                <i>written_by: {point.user_name}</i>
+                <p></p>
+                <div>{point.content}</div>
+            </div>
+            )
+            })}
             </div>
           </div>
-        )
+        </Fragment>
+       )
     }else{
         return null
         }
