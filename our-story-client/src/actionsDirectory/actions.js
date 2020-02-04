@@ -18,7 +18,7 @@ export function setStories(){
       dispatch({type: SET_STORIES_REQUEST});
       fetch('http://localhost:3000/stories')
       .then(res => res.json())
-      .then(stories => dispatch({type: SET_STORIES, stories}))
+      .then(stories => {dispatch({type: SET_STORIES, stories})})
     }
 }
 
