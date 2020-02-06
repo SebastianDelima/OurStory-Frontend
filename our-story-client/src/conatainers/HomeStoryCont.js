@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import  { connect }         from 'react-redux';
 import HomeStoryTile        from '../components/HomeStoryTile'
+import { Card } from 'react-bootstrap';
 
 class HomeStoryContainer extends Component{
       
@@ -13,17 +14,11 @@ class HomeStoryContainer extends Component{
         let stories = newStories.slice(1).slice(-5).reverse()
 
         return(
-            <Fragment>
-            <h1 className='latestStories'>Latest Stories:</h1>
-           
-            <div  id='HomeStoryCard' className="card">
-            <div className="card-body">
-              {  stories.map(story => {
-                return <HomeStoryTile story = {story}/> }) 
-              }
-           
-          </div>
-          </div>
+
+        <Fragment>
+            
+            <h1 id='a-title' className='latestStories'>Latest Stories:</h1>       
+              <HomeStoryTile stories = {stories}/> 
           </Fragment>
         )
             }else{

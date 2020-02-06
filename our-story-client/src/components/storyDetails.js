@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import     { connect }                    from 'react-redux';
+import     { connect }                from 'react-redux';
 
 
 class storyDetails extends Component{
@@ -21,7 +21,7 @@ class storyDetails extends Component{
         return(
        <Fragment>
             <div className="card">
-            <img src='..' alt="Avatar" />
+            <img id='image-card'src={story.image} alt="Avatar" />
             <div className="container">
               <h4><b>{story.title}</b></h4>
         {story.story_points.map(point =>{

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link}               from 'react-router-dom'
 
 
 
@@ -27,9 +28,9 @@ class NavBar extends Component{
                     alt='Your image is supposed to be here'/>
 
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a className="dropdown-item" href="/profile">Profile</a>
-                    <a className="dropdown-item" href="/friends">Friends</a>
-                    <a className="dropdown-item" href="/MyStories">Stories</a>
+                    <Link className="dropdown-item" to="/profile">Profile</Link>
+                    <a className="dropdown-item"    href="/friends">Friends</a>
+                    <Link className="dropdown-item" to="/MyStories">My Stories</Link>
                
                 </div>
                 </div>

@@ -1,12 +1,13 @@
 import     React, { Component, Fragment } from 'react';
 import     { connect }                    from 'react-redux';
 import     * as actions                   from './actionsDirectory/actions';
-import     welcomeContainer               from './conatainers/welcomeContainer'
+import     WelcomeContainer               from './conatainers/welcomeContainer'
 import     HomeContainer                  from './conatainers/homeContainer'
-import     UserContainer                  from './conatainers/UserContainer'
+import     MyStoriesContainer                  from './conatainers/MyStoriesContainer'
 import     newStoryContainer              from './conatainers/newStoryContainer'
 import     storyDetails                   from './components/storyDetails'
-import     { Switch, Route }              from 'react-router-dom';
+import     profileContainer               from './conatainers/profileContainer'
+import     { Switch, Route, Redirect }              from 'react-router-dom';
 import     './App.css'; 
 
 class App extends Component {
@@ -22,11 +23,14 @@ class App extends Component {
     return (
       <Fragment>
       <Switch>
-        <Route exact path='/'             component={welcomeContainer}/>
-        <Route exact path='/new'          component={newStoryContainer}/>
-        <Route exact path='/home'         component={HomeContainer}/>
-        <Route exact path='/user'         component={UserContainer}/>
-        <Route exact path='/stories/:id'  component={storyDetails}/>
+      {/* render={()=> this.state.validName   ? <Hat setCurrentUser={this.setCurrentUserSignUp} userName={this.state.logInUser}/>  : <Redirect to ='signup'/>}/> */}
+        <Route exact path='/'                 render={()=> !this.props.currentUser ? <WelcomeContainer/> : <Redirect to='/home'/>}/>
+        <Route exact path='/new'              render={()=> this.props.currentUser ? <WelcomeContainer/> : <Redirect to='/home'/>}/>
+        <Route exact path='/home'             render={()=> this.props.currentUser ? <HomeContainer/> : <Redirect to='/'/>}/>
+        <Route exact path='/MyStories'        render={()=> this.props.currentUser ? <MyStoriesContainer/> : <Redirect to='/home'/>}/>
+        <Route exact path='/stories/:id'      component={storyDetails}/>
+        <Route exact path='/stories/edit/:id' component={newStoryContainer}/>
+        <Route exact path='/profile'          component={profileContainer}/>
       </Switch>
       </Fragment>
   

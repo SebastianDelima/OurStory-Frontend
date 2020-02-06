@@ -10,7 +10,8 @@ import { connect } from 'react-redux';
             description: null,
             img: null,
             content: null,
-            completed: null
+            completed: null,
+            editing_id: null
         }
     }
 
@@ -35,8 +36,16 @@ import { connect } from 'react-redux';
         }
     }
 
-    postStory = () => {
+    postStory = (complete) => {
 
+        let completed
+
+        if(complete === "Save"){
+            completed = false
+        }else{
+            completed = true
+        }
+       
         let objectConfig = {
             method: 'POST',
             headers: {
@@ -46,7 +55,7 @@ import { connect } from 'react-redux';
               title: this.state.title,
               image: this.state.img,
               description: this.state.description,
-              completed: true
+              completed: completed
             })
         }
 
@@ -94,10 +103,29 @@ import { connect } from 'react-redux';
      }
     
      componentDidMount() {
+       
         window.scrollTo(0, 0);
+       if(window.location.pathname.split("/")[3] !== undefined){
+          
+        this.setState({
+            editing_id: parseInt(window.location.pathname.split("/")[3])
+
+        }) 
+      }
     }
 
     render(){
+        
+        // if(this.state.editing_id ){
+        //     let story = this.props.currentUser.stories.find(story => story.id === this.state.editing_id)
+        //     this.setState({
+        //         title: story.title,
+        //         description: story.description,
+        //         img: story.image
+        //     })
+        //     debugger
+        // }
+
         return (
             <Fragment>
                 
@@ -109,7 +137,7 @@ import { connect } from 'react-redux';
                     <p></p>
                     <span id='storyContent' className='content' contentEditable={true} onInput={(e) => this.setStory(e)}>Write your story here...</span>
                     <p></p>
-                    <button>Save</button><button onClick={() => this.postStory()}>Publish</button>
+                    <button onClick={() => this.postStory('Save')}>Save</button><button onClick={() => this.postStory()}>Publish</button>
               
             </Fragment>
         )
