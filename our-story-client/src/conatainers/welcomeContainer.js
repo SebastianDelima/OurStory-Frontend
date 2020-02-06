@@ -1,7 +1,7 @@
 import  React, { Component, Fragment }  from 'react';
 import  { connect }                     from 'react-redux';
 import   * as actions                   from '../actionsDirectory/actions';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
 
@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 
 
 
- class welcomeContainer extends Component{
+ class WelcomeContainer extends Component{
 
     constructor(){
         super()
@@ -52,11 +52,12 @@ import Swal from 'sweetalert2'
     
     logInUser = (e) => {
       
-        let findUser = this.props.users.find(user => user.name === this.state.userInfo.name)
-    
-        if(findUser !== undefined){
-            this.props.setCurrentUser(findUser)
-        }else{
+      let findUser = this.props.users.find(user => user.name === this.state.userInfo.name)
+      
+      if(findUser !== undefined){
+        this.props.setCurrentUser(findUser)
+        window.history.pushState('home', 'Title', '/home');
+       }else{
           e.preventDefault()
             Swal.fire({
                 title: 'Error!',
@@ -119,7 +120,7 @@ import Swal from 'sweetalert2'
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
               <div onClick={(e) => this.postUser(e)}>
-              <NavLink to='/home'  className="glyphicon glyphicon-lock"  type="submit" >Sign Up</NavLink>
+              <button   className="glyphicon glyphicon-lock"  type="submit" >Sign Up</button>
               </div>
             </div>
           </div>
@@ -145,7 +146,7 @@ import Swal from 'sweetalert2'
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
               <div onClick={(e) => this.logInUser(e)}>
-              <NavLink to='/home'  className="glyphicon glyphicon-lock" onClick={(e) => this.logInUser(e)} >Log in</NavLink>
+              <div  type='button' className="glyphicon glyphicon-lock" onClick={(e) => this.logInUser(e)} >Log in</div>
               </div>
             </div>
           </div>
@@ -170,5 +171,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(welcomeContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(WelcomeContainer);
 
