@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2'
 import     * as actions                   from '../actionsDirectory/actions';
-
+import { Dropdown } from 'semantic-ui-react'
 
 
  class NewStoryContainer extends Component {
@@ -10,7 +10,7 @@ import     * as actions                   from '../actionsDirectory/actions';
     constructor(){
         super()
         this.state = {
-            
+            users: null,
             title: null,
             description: null,
             img: null,
@@ -119,8 +119,28 @@ import     * as actions                   from '../actionsDirectory/actions';
          }
      }
     
+     createUsersHash = () => {
+        let usersArr = []
+        this.props.users.map(user => {
+            usersArr.push(
+                {
+                    key: user.name,
+                    text: user.name,
+                    image: {
+                        avatar: true,
+                        src: 'https://react.semantic-ui.com/images/avatar/small/jenny.jpg'
+                    }
+                }
+            )
+        })
+        this.setState({
+            users: usersArr
+        })
+     }
+
      componentDidMount() {
-       
+         
+         this.createUsersHash()
         window.scrollTo(0, 0);
        if(window.location.pathname.split("/")[3] !== undefined){
           
@@ -142,7 +162,6 @@ import     * as actions                   from '../actionsDirectory/actions';
         //     })
         //     debugger
         // }
-
         return (
             <Fragment>
                     <div id='newStoryDiv'>
@@ -150,6 +169,12 @@ import     * as actions                   from '../actionsDirectory/actions';
                     <p></p>
                     <span id='storyContent' className='description'  contentEditable={true} onInput={(e) => this.setStory(e)} >Brief description...</span>
                     <p></p>
+                    <Dropdown
+                        placeholder='Select Friend'
+                        fluid
+                        selection
+                        options={this.state.users}
+                    />
                     <input type='text'      className='image' placeholder='Image URL' onChange={(e) => this.setStory(e)}></input>
                     <p></p>
                     <span id='storyContent' className='content' contentEditable={true} onInput={(e) => this.setStory(e)}>Write your story here...</span>
@@ -164,7 +189,7 @@ import     * as actions                   from '../actionsDirectory/actions';
 const mapStateToProps = (state) => {
     return{
         currentUser: state.currentUser,
-        stories:     state.stories
+        users:     state.users
     }
 }
 
