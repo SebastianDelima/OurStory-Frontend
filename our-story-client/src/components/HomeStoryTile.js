@@ -7,15 +7,20 @@ export default class HomeStoryTile extends Component{
     render(){
         return(
 
-            <Item.Group link>
+            <Item.Group link> 
                 {this.props.stories.map(story => {
                     return(
-                    <Item onClick='return my_function()' href={`/stories/${story.id}`}>
-                        <Item.Image size='medium' src={story.image} />
+                        <Item >
+                            <NavLink to={`/stories/${story.id}`}>
+                        <Item.Image size='medium' src={story.image}  rounded />
+                          </NavLink>
 
                         <Item.Content>
+                        <NavLink to={`/stories/${story.id}`}>
                             <Item.Header>{story.title}</Item.Header>
                             <Item.Description>{story.description}</Item.Description>
+                        </NavLink>
+
                         </Item.Content>
                     </Item>
                     )

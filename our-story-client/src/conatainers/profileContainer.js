@@ -5,16 +5,18 @@ import NavBar                         from '../components/NavBar'
 import UserInfo                       from '../components/userInfo'
 
 
- class profileContainer extends Component{
+ class ProfileContainer extends Component{
     render(){
-    
+
         return(
             <Fragment>
                 <NavBar/>
                 <UserInfo user={this.props.user}/>
-                <p></p>
+                
                 <div>
+                    {this.props.user.stories.length != 0 ? 
                     <StoryCard stories={this.props.user.stories.filter(story => story.completed === true)}/>
+                  :  <StoryCard userName={this.props.user.name} stories={null}/>}
                 </div>
            </Fragment>
         )
@@ -27,4 +29,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(profileContainer);
+export default connect(mapStateToProps)(ProfileContainer);

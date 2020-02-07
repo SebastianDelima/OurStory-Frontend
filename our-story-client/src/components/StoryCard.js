@@ -3,8 +3,8 @@ import {Card, CardColumns}       from  'react-bootstrap'
 import {NavLink}                 from  'react-router-dom'
 
 const StoryCard = (props) => {
-    return (
-        <CardColumns>
+     if(props.stories){ 
+       return <CardColumns>
             {props.stories.map(story => 
             
             <Card className="myStoriesCards">
@@ -25,7 +25,11 @@ const StoryCard = (props) => {
             </Card>
             )}
         </CardColumns>
-    )
+     }else{
+          return  <div>No stories here yet. To create a new story click <NavLink to='/new'>here</NavLink>, 
+                or go back home to chekc some awesome stories!</div> 
+     }
+
 }
 
 export default StoryCard

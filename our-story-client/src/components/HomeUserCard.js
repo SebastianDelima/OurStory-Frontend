@@ -3,7 +3,6 @@ import {Card, Icon, Image,Item}               from 'semantic-ui-react'
 
 export default class HomeUserCard extends Component{
     render(){
-      let colors = ['red','blue','violet','yellow','olive','pink','teal','grey','purple','orange']
       let faces=['https://cdn-prod.medicalnewstoday.com/content/images/headlines/313/313264/african-woman-s-face.jpg','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80','https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTWnU2WlEm8DcWAMzFr7u8JZ3QifzB9bDLi1kvsA2w7l1SlGxP2','https://images.pexels.com/photos/2092709/pexels-photo-2092709.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500']
         return(
           <Card.Group  itemsPerRow={2} >

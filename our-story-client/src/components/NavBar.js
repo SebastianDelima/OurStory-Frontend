@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link}               from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -9,7 +10,7 @@ class NavBar extends Component{
         return(
 
             <nav id="navBar" className="navbar ">
-            <a id='OurStorylogo'className="navbar-brand" href="/home">OurStory</a>
+            <NavLink to='/home' id='OurStorylogo'className="navbar-brand" >OurStory</NavLink>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
@@ -29,7 +30,7 @@ class NavBar extends Component{
 
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <Link className="dropdown-item" to="/profile">Profile</Link>
-                    <a className="dropdown-item"    href="/friends">Friends</a>
+                    <a className="dropdown-item"    >Friends</a>
                     <Link className="dropdown-item" to="/MyStories">My Stories</Link>
                
                 </div>

@@ -10,7 +10,7 @@ import { CardDeck } from 'react-bootstrap';
 
  export default class HomeContainer extends Component{
 
-    removeCrap = () => {
+    removeModal = () => {
         if(document.querySelector('.modal-backdrop') !== null){
             document.querySelector('.modal-backdrop').remove()
             document.querySelector('body').classList.remove("modal-open")
@@ -21,7 +21,7 @@ import { CardDeck } from 'react-bootstrap';
 
     render(){
 
-        this.removeCrap()
+        this.removeModal()
 
         return(
             <Fragment>

@@ -39,7 +39,7 @@ class MyStoriesContainer extends Component {
            <Fragment>
                <NavBar/>
                 
-                <Card className='myStoriesCards'>
+                <Card id='myStoriesCardContainer' className='myStoriesCards'>
                 <Card.Header>
                     <Nav variant="tabs"  defaultActiveKey="Published">
                     <Nav.Item>
