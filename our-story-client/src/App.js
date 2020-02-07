@@ -6,7 +6,7 @@ import     HomeContainer                  from './conatainers/homeContainer'
 import     MyStoriesContainer                  from './conatainers/MyStoriesContainer'
 import     NewStoryContainer              from './conatainers/newStoryContainer'
 import     StoryDetails                   from './components/storyDetails'
-import     ProfileContainer               from './conatainers/ProfileContainer'
+import     ProfileContainer               from './conatainers/profileContainer'
 import     { Switch, Route, Redirect }              from 'react-router-dom';
 import     './App.css'; 
 
