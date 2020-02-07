@@ -1,7 +1,8 @@
 import  React, { Component, Fragment }  from 'react';
 import  { connect }                     from 'react-redux';
 import   * as actions                   from '../actionsDirectory/actions';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink, Redirect }            from 'react-router-dom';
+import { Input, Menu, Segment }         from 'semantic-ui-react'
 import Swal from 'sweetalert2'
 
 
@@ -56,7 +57,7 @@ import Swal from 'sweetalert2'
       
       if(findUser !== undefined){
         this.props.setCurrentUser(findUser)
-        window.history.pushState('home', 'Title', '/home');
+        
        }else{
           e.preventDefault()
             Swal.fire({
@@ -94,11 +95,22 @@ import Swal from 'sweetalert2'
     render(){
           
         return (
-            <Fragment>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            <Fragment >
+              <div id="welcomePage">
+              <h1 id='welcomePageTitle'>OurStory</h1>
+              <div id="homeDescription">
+                <h4 id="firstLine" className="homeDescriptionFont">Want to have fun with your friends? </h4>
+                
+                <h4 className="homeDescriptionFont"> OurStory is a platform were you can write </h4> 
+
+                <h4 className="homeDescriptionFont">stories with your friends, at the same time!</h4>
+                 
+                  <h4 id="secondLine"className="homeDescriptionFont">Sign up to start writing!</h4>
+                  </div>
+        <button id="signUpButton" type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
         Sign up
         </button>
-
+ 
         <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
@@ -120,14 +132,14 @@ import Swal from 'sweetalert2'
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
               <div onClick={(e) => this.postUser(e)}>
-              <button   className="glyphicon glyphicon-lock"  type="submit" >Sign Up</button>
+              <button  type="button" className="btn btn-secondary" >Sign Up</button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <button type="button" className="btn btn-primary" data-toggle="modal"  data-target="#exampleModalCenter2">
+      <button id="loginButton"  type="button" className="btn btn-primary" data-toggle="modal"  data-target="#exampleModalCenter2">
         Log In
         </button>
 
@@ -146,11 +158,12 @@ import Swal from 'sweetalert2'
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
               <div onClick={(e) => this.logInUser(e)}>
-              <div  type='button' className="glyphicon glyphicon-lock" onClick={(e) => this.logInUser(e)} >Log in</div>
+              <NavLink to='/home' type="button" className="btn btn-secondary" onClick={(e) => this.logInUser(e)} >Log in</NavLink>
               </div>
             </div>
           </div>
         </div>
+      </div>
       </div>
       </Fragment>
 

@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC|Caveat|Dancing+Script|Indie+Flower|Molle:400i|Rock+Salt|Schoolbell|Trade+Winds&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:300&display=swap');
 @media screen and (max-width: 768px) {
   .parent { 
     display: table;
@@ -61,7 +62,8 @@ code {
 #a-title{
   font-family: 'Schoolbell' ;
   font-size: 300%;
-  margin-right: 35%;
+  margin-right: 20%;
+  
 }
 
 .latestStories{
@@ -126,16 +128,16 @@ code {
 #homeUserCard{
   width: fit-content;
 } 
-.card {
+/* .card {
   /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-}
+  /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s; */
+/* } */
 
 /* On mouse-over, add a deeper shadow */
-.card:hover {
+/* .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
+} */ 
 
 /* Add some padding inside the card container */
 .ui.card >.image, .ui.cards>.card>.image{
@@ -147,22 +149,122 @@ code {
 .ui.segment.userSegment{
     margin-top: 10em;
     width: 50%;
-    margin-left: 20em;
+    margin-left: 10vw;
     border: none;
     
     /* border-style: dotted; */
 }
 
 .ui.segment.storySegment{
-  margin-left: 5em;
+  margin-left: 5vw;
 
-  border: none;
+  border-color: white;
   margin-top: 10em;
   width: 70%;
+  /* background-color: transparent; */
+}
+
+#myStoriesCardContainer.card{
+  border: none;
+}
+
+#welcomePageTitle {
+  font-family:'Molle' ;
+  position: relative;
+  bottom:  -3vw ;
+  font-size: 8vw;
+  margin-left: 45vw;
+  margin-top: 2vw;
+  color: rgba(216, 245, 53, 0.9);
+  text-shadow: 0 10px 0 rgb(77, 46, 11),
+               0 10px 0 rgb(77, 46, 11),
+               0 3px 0 rgb(77, 46, 11),
+               0 4px 0 rgb(77, 46, 11),
+               0 5px 0 rgb(77, 46, 11),
+               0 6px 1px rgba(235, 11, 11, 0.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+}
+
+
+#loginButton.btn.btn-primary{
+  position:relative;
+   left: 55vw;
+   top: 8vw;
+   background-color:rgba(88, 161, 4, 0.9) ;
+}
+
+#signUpButton.btn.btn-primary{
+  position:relative;
+  left: 59.8vw;
+  top: 12vw;
+  background-color:rgba(88, 161, 4, 0.9) ;
+}
+ 
+ #homeDescription{ 
+  position:relative;
+  left: 41vw;
+  top: 1.5vw;
+} 
+
+.homeDescriptionFont{
+  font-family: 'Indie Flower';
+  color: white;
+  font-size: 2.5vw;
+}
+
+#firstLine{
+  margin-top: 4vw;
+  position:relative;
+  left: 2vw;
+}
+
+#secondLine{
+  position:relative;
+  left: 9vw;
+}
+
+div.modal-content{
+  background-color: rgba(65, 124, 159, 0.9);
+}
+
+
+.a-title{
+  font-family: 'Schoolbell' ;
+  font-size: 300%;
+  margin-left: 5%;
+  
 }
 
 
 
 
 
+#welcomePage{
+  background: url('./homePic.jpg') no-repeat center center fixed; 
+  margin-top: -2vw;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-blend-mode: darken;
+  height: 100%; 
+}
+
+#newStoryDiv{
+  position: relative;
+  left: 45vw;
+}
+
+div.ui.medium.rounded.image{
+  object-fit: cover;
+  width: 22vw;
+  height: initial;
+ 
+
+}
 

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import     { connect }                from 'react-redux';
 
 
-class storyDetails extends Component{
+class StoryDetails extends Component{
 
 
     componentDidMount() {
@@ -56,4 +56,4 @@ const mapStateToProps = (state) => {
       }
     }
 
-export default connect(mapStateToProps)(storyDetails)
+export default connect(mapStateToProps)(StoryDetails)

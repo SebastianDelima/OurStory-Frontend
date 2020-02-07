@@ -1,11 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import Swal from 'sweetalert2'
+import     * as actions                   from '../actionsDirectory/actions';
 
- class newStoryContainer extends Component {
+
+
+ class NewStoryContainer extends Component {
 
     constructor(){
         super()
         this.state = {
+            
             title: null,
             description: null,
             img: null,
@@ -42,8 +47,20 @@ import { connect } from 'react-redux';
 
         if(complete === "Save"){
             completed = false
+            Swal.fire({
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+              })
         }else{
             completed = true
+            Swal.fire({
+                icon: 'success',
+                title: 'Your work has been published',
+                showConfirmButton: false,
+                timer: 1500
+              })
         }
        
         let objectConfig = {
@@ -97,8 +114,8 @@ import { connect } from 'react-redux';
 
             fetch('http://localhost:3000/story_points', objectConfig3)
             .then(res => res.json())
-            .then(storyPoint => console.log(storyPoint))
-
+            .then( this.props.setStories())
+           
          }
      }
     
@@ -128,7 +145,7 @@ import { connect } from 'react-redux';
 
         return (
             <Fragment>
-                
+                    <div id='newStoryDiv'>
                     <span  id='storyContent'className='title'  contentEditable={true} onInput={(e) => this.setStory(e)}>Title goes here...</span>
                     <p></p>
                     <span id='storyContent' className='description'  contentEditable={true} onInput={(e) => this.setStory(e)} >Brief description...</span>
@@ -138,7 +155,7 @@ import { connect } from 'react-redux';
                     <span id='storyContent' className='content' contentEditable={true} onInput={(e) => this.setStory(e)}>Write your story here...</span>
                     <p></p>
                     <button onClick={() => this.postStory('Save')}>Save</button><button onClick={() => this.postStory()}>Publish</button>
-              
+                    </div>
             </Fragment>
         )
     }
@@ -146,8 +163,14 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     return{
-        currentUser: state.currentUser
+        currentUser: state.currentUser,
+        stories:     state.stories
     }
 }
 
-export default connect(mapStateToProps)(newStoryContainer)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setStories: () => dispatch(actions.setStories()) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewStoryContainer)
