@@ -29,7 +29,7 @@ class MyStoriesContainer extends Component {
     }
 
     render(){
-        if(this.props.currentUser){
+        if(this.props.currentUser && this.props.currentUser.stories !== undefined){
 
             let completedStories = this.props.currentUser.stories.filter(story => story.completed === true)
             let uncompletedStories = this.props.currentUser.stories.filter(story => story.completed == false)
@@ -66,7 +66,36 @@ class MyStoriesContainer extends Component {
             </Fragment>
          )
         }else{
-            return null
+            return (
+                <Fragment>
+               <NavBar/>
+                
+                <Card id='myStoriesCardContainer' className='myStoriesCards'>
+                <Card.Header>
+                    <Nav variant="tabs"  defaultActiveKey="Published">
+                    <Nav.Item>
+                        <Nav.Link onClick={() => this.setPublished("Pub")} eventKey="Published">Published</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link onClick={() => this.setPublished("Work")} eventKey="Work in progress" >Work in progress</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                    </Nav.Item>
+                    </Nav>
+                </Card.Header>
+                {this.state.published ? 
+                <Card.Body>
+                    <StoryCard/>
+                </Card.Body>
+                // not published
+                 : 
+                 <Card.Body>
+                    <StoryCard />
+                </Card.Body>}
+
+                </Card>
+            </Fragment>
+            )
         }
     }
 }

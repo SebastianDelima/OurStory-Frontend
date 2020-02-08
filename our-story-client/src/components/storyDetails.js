@@ -26,11 +26,12 @@ class StoryDetails extends Component{
               <h4><b>{story.title}</b></h4>
         {story.story_points.map(point =>{
             return (
-            <div>
-                <i>written_by: {point.user_name}</i>
-                <p></p>
+                <div>
+               <br/>
                 <div>{point.content}</div>
-            </div>
+                <i>written_by: {point.user_name}</i>
+                <br/>
+                </div>
             )
             })}
             </div>

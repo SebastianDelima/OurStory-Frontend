@@ -15,7 +15,7 @@ const StoryCard = (props) => {
                 <Card.Text>
                     {story.description}
                 </Card.Text>
-                <NavLink to={`/stories/edit/${story.id}`}>Edit</NavLink>
+                <NavLink to={`/stories/edit/${story.id}`}>Add Paragraph</NavLink>
                 </Card.Body>
                
                 <Card.Footer>

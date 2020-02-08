@@ -7,6 +7,7 @@ import     MyStoriesContainer                  from './conatainers/MyStoriesCont
 import     NewStoryContainer              from './conatainers/newStoryContainer'
 import     StoryDetails                   from './components/storyDetails'
 import     ProfileContainer               from './conatainers/profileContainer'
+import     EditStory                      from './components/editStory'
 import     { Switch, Route, Redirect }              from 'react-router-dom';
 import     './App.css'; 
 
@@ -15,6 +16,7 @@ class App extends Component {
   componentDidMount = () => {
    this.props.setUsers()
    this.props.setStories()
+   this.props.setUserStories()
   }
 
 
@@ -24,13 +26,13 @@ class App extends Component {
 
       <Fragment>
       <Switch>
-        <Route exact path='/'                 render={()=> !this.props.currentUser ?  <WelcomeContainer  />   : <Redirect to='/home'/>}/>
-        <Route exact path='/new'              render={()=> this.props.currentUser  ?  <NewStoryContainer/>  : <Redirect to='/home'/>}/>
-        <Route exact path='/home'             render={()=> this.props.currentUser  ?  <HomeContainer/>      : <Redirect to='/'/> }/>
-        <Route exact path='/MyStories'        render={()=> this.props.currentUser  ?  <MyStoriesContainer/> : <Redirect to='/'/>}/>
-        <Route exact path='/stories/:id'      render={()=> this.props.currentUser  ?  <StoryDetails/>       : <Redirect to='/'/>}/>
-        <Route exact path='/stories/edit/:id' render={()=> this.props.currentUser  ?  <NewStoryContainer/>  : <Redirect to='/'/>}/>
-        <Route exact path='/profile'          render={()=> this.props.currentUser  ?  <ProfileContainer/>   : <Redirect to='/'/>}/>
+        <Route exact path='/'                 render={()=>   !this.props.currentUser ?  <WelcomeContainer  /> : <Redirect to='/home'/>}/>
+        <Route exact path='/new'              render={()=>   this.props.currentUser  ?  <NewStoryContainer/>  : <Redirect to='/home'/>}/>
+        <Route exact path='/home'             render={()=>   this.props.currentUser  ?  <HomeContainer/>      : <Redirect to='/'/> }/>
+        <Route exact path='/MyStories'        render={()=>   this.props.currentUser  ?  <MyStoriesContainer/> : <Redirect to='/'/>}/>
+        <Route exact path='/stories/:id'      render={()=>   this.props.currentUser  ?  <StoryDetails/>       : <Redirect to='/'/>}/>
+        <Route exact path='/stories/edit/:id' render={()=>   this.props.currentUser  ?  <EditStory/>          : <Redirect to='/'/>}/>
+        <Route exact path='/profile'          render={()=>   this.props.currentUser  ?  <ProfileContainer/>   : <Redirect to='/'/>}/>
       </Switch>
       </Fragment>
   
@@ -44,8 +46,9 @@ const mapDispatchToProps = (dispatch) => {
 
    return {
 
-     setUsers:   () => dispatch(actions.getUsers()),
-     setStories: () => dispatch(actions.setStories())
+     setUsers:       () => dispatch(actions.getUsers()),
+     setStories:     () => dispatch(actions.setStories()),
+     setUserStories: () => dispatch(actions.setUserStories())
 
    }
 
@@ -56,7 +59,8 @@ const mapStateToProps = (state) => {
   return {
     users:       state.users,
     stories:     state.stories,
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    userStories: state.userStories
   }
 
 }
