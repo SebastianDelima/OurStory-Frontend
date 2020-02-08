@@ -71,8 +71,19 @@ import Swal from 'sweetalert2'
       
       
 
-      postUser = () => {
-  
+      postUser = (e) => {
+
+       if( this.props.users.find(user => user.name === this.state.userInfo.name)){
+        e.preventDefault()
+        Swal.fire({
+            title: 'Error!',
+            text: 'Username Taken!',
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
+
+            }else{
+
         let objectConfig = {
             method: 'POST',
             headers: {
@@ -88,8 +99,8 @@ import Swal from 'sweetalert2'
             fetch('http://localhost:3000/users', objectConfig)
             .then(res => res.json())
             .then(user =>{this.props.setCurrentUser(user)})
-            
-        }
+         }
+      }
       
 
     render(){
