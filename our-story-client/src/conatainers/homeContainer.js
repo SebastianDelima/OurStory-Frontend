@@ -3,12 +3,15 @@ import     NavBar           from '../components/NavBar';
 import HomeStoryContainer   from './HomeStoryCont'
 import HomeUserContainer    from './HomeUserContainer';
 import { Grid, Image, Segment } from 'semantic-ui-react';
-import { NavLink }             from 'react-router-dom';
+import { Link }             from 'react-router-dom';
 import { CardDeck } from 'react-bootstrap';
+import {connect}  from 'react-redux'
+import     * as actions                   from '../actionsDirectory/actions';
 
 
 
- export default class HomeContainer extends Component{
+
+ class HomeContainer extends Component{
 
     removeModal = () => {
         if(document.querySelector('.modal-backdrop') !== null){
@@ -19,6 +22,7 @@ import { CardDeck } from 'react-bootstrap';
         }
     }
 
+
     render(){
 
         this.removeModal()
@@ -26,6 +30,7 @@ import { CardDeck } from 'react-bootstrap';
         return(
             <Fragment>
             <NavBar/>
+            <Link to="/new">New Story</Link>
              <Grid stackable columns={2}>
                 <Grid.Column>
                   <Segment className="userSegment">
@@ -38,10 +43,30 @@ import { CardDeck } from 'react-bootstrap';
                 </Segment>
                 </Grid.Column>
             </Grid> 
-            <NavLink to='/new' type='button'>New Story</NavLink>
             </Fragment>
         )
     }
 }
 
+const mapStateToProps = (state) =>{
+   
+   
+            return {
+                currentUser: state.currentUser,
+            
+            }
+          
+        }
+
+        const mapDispatchToProps = (dispatch) => {
+
+            return {
+              
+                setCurrentUser: (user) => dispatch(actions.setCurrentUser(user))}
+            
+        }
+        
+
+    
+    export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
 

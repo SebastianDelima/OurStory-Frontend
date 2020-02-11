@@ -14,7 +14,7 @@ import UserInfo                       from '../components/userInfo'
                 <UserInfo user={this.props.user}/>
                 
                 <div>
-                    {this.props.user.stories.length != 0 ? 
+                    {this.props.user.stories ? 
                     <StoryCard stories={this.props.user.stories.filter(story => story.completed === true)}/>
                   :  <StoryCard userName={this.props.user.name} stories={null}/>}
                 </div>

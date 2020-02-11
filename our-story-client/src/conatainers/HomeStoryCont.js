@@ -10,15 +10,21 @@ class HomeStoryContainer extends Component{
        
         if(this.props.stories){ 
 
-        let newStories = this.props.stories.filter(story => story.completed == true)
-        let stories = newStories.slice(1).slice(-5).reverse()
+        let newStories = this.props.stories.reverse().filter(story => story.completed == true)
+        let stories = newStories.slice(0, 6)
+       
+        
 
         return(
 
         <Fragment>
             
-            <h1 id='a-title' className='latestStories'>Latest Stories:</h1>       
-              <HomeStoryTile stories = {stories}/> 
+            <h1 id='a-title' className='latestStories'>Latest Stories:</h1>
+            {newStories.length <= 5 ?
+            <HomeStoryTile stories = {newStories}/>
+            :
+            <HomeStoryTile stories = {stories}/> 
+            }
           </Fragment>
         )
             }else{

@@ -52,7 +52,7 @@ import Swal from 'sweetalert2'
       }
     
     logInUser = (e) => {
-      
+     
       let findUser = this.props.users.find(user => user.name === this.state.userInfo.name)
       
       if(findUser !== undefined){
@@ -124,7 +124,7 @@ import Swal from 'sweetalert2'
  
         <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" role="document">
-          <div className="modal-content">
+          <div  onKeyDown={(e) => { if(e.key === "Enter"){return this.postUser(e)}}} className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLongTitle">Sign Up</h5>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -142,7 +142,7 @@ import Swal from 'sweetalert2'
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-              <div onClick={(e) => this.postUser(e)}>
+              <div onClick={(e) => this.logInUser(e)}>
               <button  type="button" className="btn btn-secondary" >Sign Up</button>
               </div>
             </div>
@@ -156,7 +156,7 @@ import Swal from 'sweetalert2'
 
         <div className="modal fade" id="exampleModalCenter2"  tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div className=" modal-dialog modal-dialog-centered" role="document">
-          <div className="modal-content">
+          <div onKeyDown={(e) => { if(e.key === "Enter"){return this.logInUser(e)}}} className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLongTitle">Log In</h5>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -168,9 +168,10 @@ import Swal from 'sweetalert2'
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-              <div onClick={(e) => this.logInUser(e)}>
-              <NavLink to='/home' type="button" className="btn btn-secondary" onClick={(e) => this.logInUser(e)} >Log in</NavLink>
-              </div>
+             <div onClick={(e) => this.logInUser(e)}>
+              <NavLink to='/home' type="button" className="btn btn-secondary" onKeyPress={ this.logInUser} >Log in</NavLink>
+             </div>
+             
             </div>
           </div>
         </div>

@@ -292,7 +292,7 @@ div.ui.medium.rounded.image{
   width: 100%;
   background-image: repeating-linear-gradient(white 0px, white 24px, steelblue 25px);
 }
-.text {
+.editStoryText {
   position: absolute;
   top: 7.5vw;
   left: 5vw;
@@ -329,3 +329,88 @@ div.ui.medium.rounded.image{
   top: 3vw;
 }
 
+/* .div.menu.transition.visible{
+} */
+
+.ui.floating.dropdown .menu {
+  width: 25em;
+  left: -18em;
+
+}
+
+.acceptButton{
+  position: relative;
+  left: 15.5em;
+  bottom: 2.5em;
+  border-style: dashed;
+  border-radius: 1em;
+  font-family:'Indie Flower', cursive;
+  font-weight: 600;
+  box-shadow: 0px 1px 0px rgba(64, 73, 68,0.9);
+ 
+}
+
+.acceptButton:active{
+  background: #e5e5e5;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
+}
+
+.declineButton{
+  position: relative;
+  left: 16em;
+  bottom: 2.5em;
+  border-style: dashed;
+  border-radius: 1em;
+  font-family:'Indie Flower', cursive;
+  font-weight: 600;
+  box-shadow: 0px 1px 0px rgba(64, 73, 68,0.9);
+}
+
+.unfriendButton{
+  position: relative;
+  left: 8em;
+  bottom: 2.8em;
+  border-style: dashed;
+  border-radius: 1em;
+  font-family:'Indie Flower', cursive;
+  font-weight: 600;
+  box-shadow: 0px 1px 0px rgba(64, 73, 68,0.9);
+}
+.unfriendButton:active{
+  background: #e5e5e5;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
+}
+
+
+.declineButton:active{
+  background: #e5e5e5;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
+}
+
+div.item{
+  margin-left: 1em;
+  font-family:'Indie Flower', cursive;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+button:focus {outline:0 !important;}
+
+#friendCards.ui.card{
+  position: relative;
+  height: calc(30%);
+
+}
+
+#friendHeader.header{
+  margin-top: 0.2em;
+}

@@ -16,10 +16,6 @@ class HomeUserContainer extends Component{
                     <h1 className="a-title">Amazing People!</h1>
                    
                         <HomeUserCard users={users}/>
-                   
-                   
-                   
-               
           </Fragment>
         )
     }
@@ -34,19 +30,3 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(HomeUserContainer);
 
 
-{/* <Card style={{ width: '60rem',height: '68rem'}}>
- <h1 id='a-title' >Amazing People!:</h1>
- <CardDeck >
-   { 
-   users.length == 4 && users != "load" ?  users.slice(0,2).map(user => {
-     return <HomeUserCard user = {user}/> }) : null
-   }
-   <p></p>
-</CardDeck>
-<CardDeck >
-{ 
-   users.length == 4 && users != "load" ?  users.slice(2,4).map(user => {
-     return <HomeUserCard user = {user}/> }) : null
-   }
-   </CardDeck>
-   </Card> */}
