@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Swal from 'sweetalert2'
 import     * as actions                   from '../actionsDirectory/actions';
 import { Dropdown } from 'semantic-ui-react'
+import NavBar            from '../components/NavBar';
+
 
 
  class NewStoryContainer extends Component {
@@ -91,6 +93,7 @@ import { Dropdown } from 'semantic-ui-react'
 
 
         const postUserStory = (id) => {
+            
             let objectConfig2 = {
             method: 'POST',
             headers: {
@@ -131,6 +134,16 @@ import { Dropdown } from 'semantic-ui-react'
             fetch('http://localhost:3000/story_points', objectConfig3)
             .then(res => res.json())
             .then( this.props.setStories())
+            .then(refreshUser())
+           
+         }
+
+         const refreshUser = () => {
+
+            fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
+            .then(res => res.json())
+            .then(user =>  this.props.setCurrentUser(user))
+            
            
          }
      }
@@ -154,7 +167,7 @@ import { Dropdown } from 'semantic-ui-react'
              }
              fetch('http://localhost:3000/user_stories', objectConfig2)
              .then(res => res.json())
-             .then(data => console.log(data))
+        
              
 
         })
@@ -162,6 +175,7 @@ import { Dropdown } from 'semantic-ui-react'
      }
 
      createUsersHash = () => {
+
         let usersArr = []
         this.props.users.map(user => {
             usersArr.push(
@@ -179,9 +193,10 @@ import { Dropdown } from 'semantic-ui-react'
         this.setState({
             users: usersArr
         })
+
      }
      
-     check = (e) => {
+    selectFriend = (e) => {
    
          if(e.currentTarget.classList.value === "delete icon"){
             
@@ -201,35 +216,29 @@ import { Dropdown } from 'semantic-ui-react'
      componentDidMount() {
          
          this.createUsersHash()
-        window.scrollTo(0, 0);
-       if(window.location.pathname.split("/")[3] !== undefined){
-          
-        this.setState({
-            editing_id: parseInt(window.location.pathname.split("/")[3])
 
-        }) 
-      }
+        window.scrollTo(0, 0);
+    //    if(window.location.pathname.split("/")[3] !== undefined){
+          
+    //     this.setState({
+    //         editing_id: parseInt(window.location.pathname.split("/")[3])
+
+    //     }) 
+    //   }
     }
 
     render(){
-        
-        // if(this.state.editing_id ){
-        //     let story = this.props.currentUser.stories.find(story => story.id === this.state.editing_id)
-        //     this.setState({
-        //         title: story.title,
-        //         description: story.description,
-        //         img: story.image
-        //     })
-        //   
-        // }
+        debugger
+      
         return (
             <Fragment>
+                <NavBar/>
                     <div id='newStoryDiv'>
                     <span  id='storyContent'className='title'  contentEditable={true} onInput={(e) => this.setStory(e)}>Title goes here...</span>
                     <p></p>
                     <span id='storyContent' className='description'  contentEditable={true} onInput={(e) => this.setStory(e)} >Brief description...</span>
                     <p></p>
-                    <Dropdown onChange={(e) => this.check(e)}
+                    <Dropdown onChange={(e) => this.selectFriend(e)}
                         placeholder='Select Friend'
                         fluid
                         multiple
@@ -257,7 +266,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setStories: () => dispatch(actions.setStories()) }
+        setStories: () => dispatch(actions.setStories()),
+        setCurrentUser: (user) => dispatch(actions.setCurrentUser(user))}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewStoryContainer)
