@@ -79,7 +79,8 @@ import Swal from 'sweetalert2'
             title: 'Error!',
             text: 'Username Taken!',
             icon: 'error',
-            confirmButtonText: 'Cool'
+            confirmButtonText: 'Cool',
+            backdrop: false
           })
 
             }else{
@@ -142,7 +143,7 @@ import Swal from 'sweetalert2'
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-              <div onClick={(e) => this.logInUser(e)}>
+              <div onClick={(e) => this.postUser(e)}>
               <button  type="button" className="btn btn-secondary" >Sign Up</button>
               </div>
             </div>
@@ -185,8 +186,10 @@ import Swal from 'sweetalert2'
 
 
 const mapDispatchToProps = (dispatch) => {
+
     return {
         setCurrentUser: (user) => dispatch(actions.setCurrentUser(user))
+      
     }
 }
 

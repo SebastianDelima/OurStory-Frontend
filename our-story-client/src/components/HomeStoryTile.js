@@ -15,11 +15,11 @@ export default class HomeStoryTile extends Component{
                         <Item.Image size='medium' src={story.image}  rounded />
                           </NavLink>
 
-                        <Item.Content>
+                        <Item.Content id="storyDetails">
                         <NavLink to={`/stories/${story.id}`}>
-                            <Item.Header>{story.title}</Item.Header>
-                            <Item.Description>{story.description}</Item.Description>
+                            <Item.Header id="homeStoryTitle">{story.title}</Item.Header>
                         </NavLink>
+                            <Item.Description id="homeStoryDes">{story.description}</Item.Description>
 
                         </Item.Content>
                     </Item>

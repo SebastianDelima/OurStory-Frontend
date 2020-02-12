@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2'
 import     * as actions                   from '../actionsDirectory/actions';
-import { Dropdown } from 'semantic-ui-react'
+import { Dropdown, Form, Button, Card, Divider } from 'semantic-ui-react'
 import NavBar            from '../components/NavBar';
 
 
@@ -20,7 +20,8 @@ import NavBar            from '../components/NavBar';
             description: null,
             img: null,
             content: null,
-            completed: null
+            completed: null,
+            form: true
            
         }
     }
@@ -28,18 +29,20 @@ import NavBar            from '../components/NavBar';
     setStory = (e) => {
         
         if(e.currentTarget.classList.value == "title"){
+           
           this.setState({
-              title: e.currentTarget.innerText 
+              title: e.currentTarget.value
           })
         }else if(e.currentTarget.classList.value == "description"){
+           
             this.setState({
-                description: e.currentTarget.innerText 
+                description: e.currentTarget.value
             })
         }else if(e.currentTarget.classList.value == "image"){
             this.setState({
                 img: e.currentTarget.value
             })
-        }else if(e.currentTarget.classList.value == "content"){
+        }else if(e.currentTarget.classList.value == "editStoryText"){
             this.setState({
                 content: e.currentTarget.innerText
             })
@@ -218,22 +221,69 @@ import NavBar            from '../components/NavBar';
          this.createUsersHash()
 
         window.scrollTo(0, 0);
-    //    if(window.location.pathname.split("/")[3] !== undefined){
-          
-    //     this.setState({
-    //         editing_id: parseInt(window.location.pathname.split("/")[3])
-
-    //     }) 
-    //   }
+   
     }
 
     render(){
-        debugger
-      
+        
+      if(this.state.form ){
+          return(
+              
+              <Fragment>
+        <NavBar/>
+
+        <Form id='newStoryForm'>
+            <div id='formFields'>
+        <Form.Field>
+        
+          <input className='title' onChange={(e) => this.setStory(e)} placeholder='Title'/>
+        </Form.Field>
+        <Form.Field>
+         
+          <input className='description' onChange={(e) => this.setStory(e)} placeholder='brief description' />
+        </Form.Field>
+       <Form.Field>
+       <Dropdown onChange={(e) => this.selectFriend(e)}
+                        placeholder='Select Friend'
+                        fluid
+                        multiple
+                        search
+                        selection
+                        options={this.state.users}
+                        />
+       </Form.Field>
+       <Form.Field>
+       <input   className='image' placeholder='Image URL' onChange={(e) => this.setStory(e)}/>
+       </Form.Field>
+        <Button type='submit' onClick={() => this.setState({form: null})}>Go Edit!</Button>
+            </div>
+      </Form>
+      </Fragment>
+          )
+      }else{
         return (
             <Fragment>
                 <NavBar/>
-                    <div id='newStoryDiv'>
+                  
+                <div  className="paper">
+                <h2 id='addMore'>{this.state.title}</h2>
+            <div  className="lines">
+                <div onInput={(e) => this.setStory(e)} className="editStoryText" contentEditable={true} >
+                </div>
+                </div>
+                <div className="holes hole-top"></div>
+                <div className="holes hole-middle"></div>
+             <div className="holes hole-bottom"></div>
+            <button onClick={() => this.postStory('Save')}>Add to story</button>
+            
+            </div>
+
+
+
+
+
+
+                    {/* <div id='newStoryDiv'>
                     <span  id='storyContent'className='title'  contentEditable={true} onInput={(e) => this.setStory(e)}>Title goes here...</span>
                     <p></p>
                     <span id='storyContent' className='description'  contentEditable={true} onInput={(e) => this.setStory(e)} >Brief description...</span>
@@ -251,9 +301,9 @@ import NavBar            from '../components/NavBar';
                     <span id='storyContent' className='content' contentEditable={true} onInput={(e) => this.setStory(e)}>Write your story here...</span>
                     <p></p>
                     <button onClick={() => this.postStory('Save')}>Save</button><button onClick={() => this.postStory()}>Publish</button>
-                    </div>
+                    </div> */}
             </Fragment>
-        )
+        )}
     }
 }
 
