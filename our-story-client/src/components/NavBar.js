@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import {Link}               from 'react-router-dom'
 import { NavLink } from 'react-router-dom';
-import { Dropdown, Button } from 'semantic-ui-react'
+import { Dropdown, Divider} from 'semantic-ui-react'
+
 import {connect}            from 'react-redux';
 import     * as actions                   from '../actionsDirectory/actions';
+import { Badge } from "antd";
 
 
 
@@ -23,7 +25,7 @@ class NavBar extends Component{
         let requestorArr = []
         let requestorHash = []
         let requestorIds = this.props.currentUser.friend_requests_as_receiver.map(request => request.requestor_id)
-
+        
        this.props.users.forEach(user => {
             if(requestorIds.includes(user.id)){
                 requestorArr.push(user)
@@ -43,7 +45,7 @@ class NavBar extends Component{
         this.setState({
             friendRequests: requestorHash
         })
-        
+       
      }
 
      handleFriendRequest = (e, type) => {
@@ -85,8 +87,14 @@ class NavBar extends Component{
                     })
                 }
                  fetch(`http://localhost:3000/friend_requests/${friendRequest.id}`, objectConfig2)
-               
-
+                 
+                 fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
+                 .then(res => res.json())
+                 .then(user =>  {
+                     this.props.setCurrentUser(user)
+                     this.createFriendRequestsHash()
+                    })
+                 
      }
 
      componentDidMount = () => {
@@ -111,6 +119,11 @@ class NavBar extends Component{
                 <img id='search' src='https://cdn4.iconfinder.com/data/icons/basic-user-interface-2/512/User_Interface-25-512.png' alt='nada'/>
                 </div>
                 {this.state.friendRequests ? 
+                
+                <div>
+                    {this.state.friendRequests.length >= 1 ?
+                    <Badge count={this.state.friendRequests.length} />  : null
+                    }
                 <Dropdown                   
                 icon='add user'
                 floating
@@ -134,6 +147,7 @@ class NavBar extends Component{
                     )}
                     </Dropdown.Menu>
                 </Dropdown>
+                </div>
               : null }
                 <div id= 'profPicDiv' class="dropdown show">
                     <img data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -144,8 +158,12 @@ class NavBar extends Component{
 
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <Link className="dropdown-item" to="/profile">Profile</Link>
+                   
                     <Link className="dropdown-item"to='/friends'>Friends</Link>
+                    
                     <Link className="dropdown-item" to="/MyStories">My Stories</Link>
+                  
+                    <i id='logOut' className="dropdown-item" onClick={() => this.props.setCurrentUser(null)}>Log out</i>
                
                 </div>
                 </div>

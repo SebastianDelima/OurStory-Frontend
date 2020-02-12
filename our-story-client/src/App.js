@@ -29,7 +29,7 @@ class App extends Component {
       <Switch>
         <Route exact path='/'                 render={()=>   !this.props.currentUser ?  <WelcomeContainer  /> : <Redirect to='/home'/>}/>
         <Route exact path='/new'              render={()=>   this.props.currentUser  ?  <NewStoryContainer/>  : <Redirect to='/'/>}/>
-        <Route exact path='/home'             render={()=>   this.props.currentUser  ?  <HomeContainer/>      : <Redirect to='/'/> }/>
+        <Route exact path='/home'             render={()=>   this.props.currentUser  ?  <HomeContainer/>      : <Redirect to='/'/>}/>
         <Route exact path='/MyStories'        render={()=>   this.props.currentUser  ?  <MyStoriesContainer/> : <Redirect to='/'/>}/>
         <Route exact path='/stories/:id'      render={()=>   this.props.currentUser  ?  <StoryDetails/>       : <Redirect to='/'/>}/>
         <Route exact path='/stories/edit/:id' render={()=>   this.props.currentUser  ?  <EditStory/>          : <Redirect to='/'/>}/>

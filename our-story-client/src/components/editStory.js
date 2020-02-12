@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import { connect }          from 'react-redux';
-import Swal from 'sweetalert2';
-import     * as actions                   from '../actionsDirectory/actions';
-import { NavLink } from 'react-router-dom';
+import { connect }                    from 'react-redux';
+import Swal                           from 'sweetalert2';
+import     * as actions               from '../actionsDirectory/actions';
+import { NavLink,  Redirect}          from 'react-router-dom';
+import NavBar                         from '../components/NavBar';
+
+
 
 
 class EditStory extends Component{
@@ -12,7 +15,9 @@ class EditStory extends Component{
         this.state = {
           storyId: null,
           content: null,
-          creator: null
+          creator: null,
+          story: null,
+          redirect: null
         }
     }
     
@@ -69,6 +74,7 @@ class EditStory extends Component{
              id: this.state.storyId
            
             })
+            
         }
 
         fetch(`http://localhost:3000/stories/${this.state.storyId}`, objectConfig)
@@ -80,10 +86,54 @@ class EditStory extends Component{
         .then(user =>  this.props.setCurrentUser(user))
         
     }
+
+    deleteStory = (e) => {
+       
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.value) {
+                this.setState({
+                    redirect: true
+                })
+                
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )
+            }
+                let objectConfig = {
+                    method: 'DELETE',
+                    headers: {
+                    'Content-Type':'application/json'
+                    }, 
+                    body: JSON.stringify({
+    
+                     id: this.state.storyId
+                    })
+                }
+                 fetch(`http://localhost:3000/stories/${this.state.storyId}`, objectConfig)
+                 .then(
+                     this.setState({
+                    redirect: true
+                })).then(
+                    fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
+                    .then(res => res.json())
+                    .then(user =>  this.props.setCurrentUser(user))
+                )
+          })    
+    }
     
     
     componentDidMount(){
-        
+   
         this.setState({
             storyId: parseInt(window.location.pathname.split("/")[3])
         }) 
@@ -96,34 +146,43 @@ class EditStory extends Component{
                     creator: story.creator
               })
           })
+        let story = this.props.stories.find(story => story.id === parseInt(window.location.pathname.split("/")[3]))
+    
+        this.setState({
+            story: story
+        })
     }
     
    
     
     render(){
 
-        if(this.props.stories){
-            let story = this.props.stories.find(story => story.id === this.state.storyId)
+   
+        if(this.state.redirect){
+            return <Redirect to='/home'/>
         }
-       
-        return(
-           <Fragment>
-               <NavLink/>
-               <div  className="paper">
-                <h2 id='addMore'> Add more content down here!</h2>
-            <div  className="lines">
-                <div onInput={(e) => this.addContent(e)} className="editStoryText" contentEditable={true} >
-                </div>
-                </div>
-                <div className="holes hole-top"></div>
-                <div className="holes hole-middle"></div>
-             <div className="holes hole-bottom"></div>
-            <button onClick={() => this.postStoryPoint()}>Add to story</button>
-            {this.state.creator ?  <NavLink to='/home'><button onClick={() => this.publishStory()}> Publish Story</button> </NavLink>: null }
-            </div>
 
-        </Fragment>
-             )
+         return(
+            <Fragment>
+                <NavBar/>
+                <div  className="paper">
+                 <h2 id='addMore'> Add more content down here!</h2>
+             <div  className="lines">
+                 <div onInput={(e) => this.addContent(e)} className="editStoryText" contentEditable={true} >
+                 </div>
+                 </div>
+                 <div className="holes hole-top"></div>
+                 <div className="holes hole-middle"></div>
+              <div className="holes hole-bottom"></div>
+             <button onClick={() => this.postStoryPoint()}>Add to story</button>
+             
+             {this.state.creator && this.state.story.completed === false ?  <NavLink to='/home'><button onClick={() => this.publishStory()}> Publish Story</button> </NavLink>: null }
+             {this.state.creator ?  <button onClick={() => this.deleteStory()}>Delete Story</button>: null }
+             </div>
+ 
+         </Fragment>
+              )
+     
          }
     }
 

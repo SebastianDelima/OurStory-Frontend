@@ -36,10 +36,16 @@ code {
 }
 
 #OurStorylogo{
+   
+    /* text-shadow: 	6px 7px 30px #d0ff00; */
+    
+  padding: 3px;
+  font-weight: 700;
   position: absolute;
   margin-left: 20%;
   font-family: 'Caveat', cursive;
   font-size: 250%;
+  color: rgb(82, 144, 11);
 }
 
 #searchInput{
@@ -57,10 +63,13 @@ code {
 
 
 
-
+h1.a-title{
+  font-family: 'Caveat';
+  color:rgb(68, 128, 0);
+}
 
 #a-title{
-  font-family: 'Schoolbell' ;
+  font-family: 'Caveat';
   font-size: 300%;
   margin-right: 20%;
   
@@ -70,7 +79,7 @@ code {
   display: flex;
   justify-content: flex-end;
   margin-right: 20%;
-  
+  color:rgb(68, 128, 0);
 }
 
 #storyContent{
@@ -156,11 +165,11 @@ code {
 }
 
 .ui.segment.storySegment{
-  margin-left: 5vw;
+  margin-left: 2vw;
 
   border-color: white;
   margin-top: 10em;
-  width: 70%;
+  width: 80%;
   /* background-color: transparent; */
 }
 
@@ -369,17 +378,17 @@ div.ui.medium.rounded.image{
   box-shadow: 0px 1px 0px rgba(64, 73, 68,0.9);
 }
 
-.unfriendButton{
-  position: relative;
+#unfriendButton{
+  /* position: relative;
   left: 8em;
-  bottom: 2.8em;
+  bottom: 2.8em; */
   border-style: dashed;
   border-radius: 1em;
   font-family:'Indie Flower', cursive;
   font-weight: 600;
   box-shadow: 0px 1px 0px rgba(64, 73, 68,0.9);
 }
-.unfriendButton:active{
+#unfriendButton:active{
   background: #e5e5e5;
   -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
      -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
@@ -413,4 +422,80 @@ button:focus {outline:0 !important;}
 
 #friendHeader.header{
   margin-top: 0.2em;
+  
+}
+
+#friendsContainer.ui.card{
+  position: relative;
+    left: 25.5%;
+    width: 50em;
+}
+
+#friendsH1{
+  font-family: 'Caveat', cursive;
+  position: relative;
+  left: 1em;
+
+}
+
+#friendsRows.ui.two.cards{
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+}
+
+#friendImage.ui.tiny.rounded.left.floated.image{
+
+  left: -0.5em;
+      bottom: 0.5em;
+      position: relative;
+      border-style: dashed;
+      border-width: 2px;
+
+}
+
+#logOut{
+  cursor: pointer;
+}
+
+#homeStoryTitle.header{
+  
+  font-size: 2.5em;
+  margin-left: 1.5vw;
+  font-family: 'Caveat';
+  color:rgb(0, 0, 0);
+}
+
+div#homeStoryDes.description{
+  margin-left: 2vw;
+  font-size: 1.2em;
+}
+
+#newStoryForm{
+  position: relative;
+    left: 30%;
+    width: 45%;
+    height: 70%;
+    bottom: -10%;
+    background-image: url('https://cdn.pixabay.com/photo/2017/03/31/15/34/cactus-2191647_960_720.jpg');
+    border-radius: 2%;
+   /* https://cdn.pixabay.com/photo/2014/12/15/16/46/graffiti-569265_960_720.jpg
+   https://cdn.pixabay.com/photo/2019/01/09/14/13/leaves-3923413_960_720.jpg 
+   https://cdn.pixabay.com/photo/2018/05/02/09/04/blue-3368023_960_720.png
+   https://cdn.pixabay.com/photo/2018/02/24/07/17/pattern-3177414_960_720.png*/
+}
+
+#formFields{
+  position: relative;
+  width: 50%;
+  left: 25%;
+  bottom: -20%;
+}
+
+#body.modal-open.swal2-shown.swal2-height-auto{
+  height:24em;
+}
+
+.swal2-height-auto{
+  height: 1em;
 }

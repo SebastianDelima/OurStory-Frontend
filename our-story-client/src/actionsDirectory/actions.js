@@ -10,6 +10,7 @@ export function getUsers(){
 }
 
 export function setCurrentUser(user){
+    debugger
     return {type: SET_CURRENT_USER, user: user}
 }
 
