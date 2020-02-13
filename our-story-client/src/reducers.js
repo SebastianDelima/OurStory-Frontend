@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SET_USERS, SET_USERS_REQUEST, SET_STORIES, SET_STORIES_REQUEST, SET_CURRENT_USER, SET_USER_STORIES } from './actionsDirectory/constants';
+import { SET_USERS, SET_USERS_REQUEST, SET_STORIES, SET_STORIES_REQUEST, SET_CURRENT_USER, SET_USER_STORIES, SET_FRIEND_REQUESTS, SET_REQUESTS } from './actionsDirectory/constants';
 
 const setUsers = (state = [], action) => {
     switch(action.type){
@@ -41,13 +41,26 @@ const setStories = (state = [], action) => {
     }
 }
 
+const setRequests = (state = null, action) => {
+    switch(action.type){
+        case SET_FRIEND_REQUESTS:
+            return state
+            case SET_REQUESTS:
+                return action.requests
+        default:
+            return state
+    }
+
+}
+
 
 const rootReducer = combineReducers({
 
      users:       setUsers,
      currentUser: setCurrentUser,
      userStories: setUserStories,
-     stories:     setStories
+     stories:     setStories,
+     requests:    setRequests
 
   });
 

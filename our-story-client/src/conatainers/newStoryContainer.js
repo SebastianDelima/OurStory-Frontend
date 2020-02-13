@@ -28,21 +28,21 @@ import NavBar            from '../components/NavBar';
 
     setStory = (e) => {
         
-        if(e.currentTarget.classList.value == "title"){
+        if(e.currentTarget.classList.value === "title"){
            
           this.setState({
               title: e.currentTarget.value
           })
-        }else if(e.currentTarget.classList.value == "description"){
+        }else if(e.currentTarget.classList.value === "description"){
            
             this.setState({
                 description: e.currentTarget.value
             })
-        }else if(e.currentTarget.classList.value == "image"){
+        }else if(e.currentTarget.classList.value === "image"){
             this.setState({
                 img: e.currentTarget.value
             })
-        }else if(e.currentTarget.classList.value == "editStoryText"){
+        }else if(e.currentTarget.classList.value === "editStoryText"){
             this.setState({
                 content: e.currentTarget.innerText
             })
@@ -90,7 +90,6 @@ import NavBar            from '../components/NavBar';
             this.setState({
                 story_id: story.id
             })
-           
            return  postUserStory(story.id)
         })
 
@@ -116,6 +115,7 @@ import NavBar            from '../components/NavBar';
             if(this.state.selectedFriends.length === 0 || this.state.selectedFriends){
                 this.friendsPostUserStories()
             }
+            this.props.getUsers()
         })
       }
 
@@ -147,6 +147,7 @@ import NavBar            from '../components/NavBar';
             .then(res => res.json())
             .then(user =>  this.props.setCurrentUser(user))
             
+            this.props.setUserStories()
            
          }
      }
@@ -205,7 +206,7 @@ import NavBar            from '../components/NavBar';
             
           let newArr =  this.state.selectedFriends.filter(friend => {
             
-             return friend != e.currentTarget.parentElement.innerText})
+             return friend !== e.currentTarget.parentElement.innerText})
           this.setState({
               selectedFriends: newArr
           })
@@ -316,8 +317,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setStories: () => dispatch(actions.setStories()),
-        setCurrentUser: (user) => dispatch(actions.setCurrentUser(user))}
+        setStories:      () => dispatch(actions.setStories()),
+        setCurrentUser: (user) => dispatch(actions.setCurrentUser(user)),
+        getUsers:              () => dispatch(actions.getUsers()),
+        setUserStories: () => dispatch(actions.setUserStories())
+
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewStoryContainer)

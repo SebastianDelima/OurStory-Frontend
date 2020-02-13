@@ -8,9 +8,10 @@ export default class HomeStoryTile extends Component{
         return(
 
             <Item.Group link> 
-                {this.props.stories.map(story => {
+                {this.props.stories.slice(0, 4).map(story => {
                     return(
-                        <Item >
+                        <Item key={story.id} id='homeStoryCard' >
+                           
                             <NavLink to={`/stories/${story.id}`}>
                         <Item.Image size='medium' src={story.image}  rounded />
                           </NavLink>

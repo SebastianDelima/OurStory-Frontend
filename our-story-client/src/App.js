@@ -18,6 +18,7 @@ class App extends Component {
    this.props.setUsers()
    this.props.setStories()
    this.props.setUserStories()
+  
   }
 
 
@@ -48,9 +49,10 @@ const mapDispatchToProps = (dispatch) => {
 
    return {
 
-     setUsers:       () => dispatch(actions.getUsers()),
-     setStories:     () => dispatch(actions.setStories()),
-     setUserStories: () => dispatch(actions.setUserStories())
+     setUsers:            () => dispatch(actions.getUsers()),
+     setStories:          () => dispatch(actions.setStories()),
+     setUserStories:      () => dispatch(actions.setUserStories())
+     
 
    }
 

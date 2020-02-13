@@ -1,7 +1,16 @@
-import{SET_USERS, SET_USERS_REQUEST, SET_STORIES, SET_STORIES_REQUEST, SET_CURRENT_USER, SET_USER_STORIES} from './constants'
+import{
+        SET_USERS,
+        SET_USERS_REQUEST, 
+        SET_STORIES, 
+        SET_STORIES_REQUEST, 
+        SET_CURRENT_USER,
+        SET_USER_STORIES,
+        SET_FRIEND_REQUESTS,
+        SET_REQUESTS } from './constants'
 
 export function getUsers(){
     return (dispatch) => {
+      
         dispatch({type: SET_USERS_REQUEST});
         fetch('http://localhost:3000/users')
         .then(res => res.json())
@@ -10,7 +19,6 @@ export function getUsers(){
 }
 
 export function setCurrentUser(user){
-    debugger
     return {type: SET_CURRENT_USER, user: user}
 }
 
@@ -32,5 +40,13 @@ export function setUserStories(){
   }
 }
 
+export function setFriendRequests(){
+  return(dispatch) => {
+    dispatch({type: SET_FRIEND_REQUESTS});
+    fetch('http://localhost:3000/friend_requests')
+    .then(res => res.json())
+    .then(requests => {dispatch({type: SET_REQUESTS, requests})})
+  }
+}
 
 
