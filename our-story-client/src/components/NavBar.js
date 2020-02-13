@@ -20,12 +20,36 @@ class NavBar extends Component{
         }
     }
 
-    createFriendRequestsHash = () => {
+    createFriendRequestsHash = (users) => {
 
         let requestorArr = []
         let requestorHash = []
         let requestorIds = this.props.currentUser.friend_requests_as_receiver.map(request => request.requestor_id)
-        
+      
+        if(this.props.users === "loading"){
+            return null
+        }else if(users){
+            users.forEach(user => {
+                if(requestorIds.includes(user.id)){
+                    requestorArr.push(user)
+                }
+            })
+    
+            requestorArr.map(user => {
+                requestorHash.push(
+                    {
+                        key: user.name,
+                        text: user.name,
+                        value: user.name,
+                        image: { avatar: true, src: user.img }
+                    }
+                )
+            })
+            this.setState({
+                friendRequests: requestorHash
+            })
+        }
+        else{
        this.props.users.forEach(user => {
             if(requestorIds.includes(user.id)){
                 requestorArr.push(user)
@@ -45,7 +69,7 @@ class NavBar extends Component{
         this.setState({
             friendRequests: requestorHash
         })
-       
+    }
      }
 
      handleFriendRequest = (e, type) => {
@@ -53,28 +77,28 @@ class NavBar extends Component{
         let name = e.currentTarget.parentElement.parentElement.children[0].innerText
         let friend = this.props.users.find(user => user.name === name)
 
-        let friendRequest = this.props.currentUser.friend_requests_as_receiver.find(request => request.requestor_id === friend.id && request.receiver_id === this.props.currentUser.id )
-       
+        
         if(type === "accept"){
-
+            
             let objectConfig = {
                 method: 'POST',
                 headers: {
                 'Content-Type':'application/json'
-                }, 
-                body: JSON.stringify({
-
-                 friend_a_id: this.props.currentUser.id,
-                 friend_b_id: friend.id
+            }, 
+            body: JSON.stringify({
                 
-                })
-            }
-
-            fetch('http://localhost:3000/friendships', objectConfig)
-            
-
-            
+                friend_a_id: this.props.currentUser.id,
+                friend_b_id: friend.id
+                
+            })
         }
+        
+        fetch('http://localhost:3000/friendships', objectConfig)
+        
+    }
+
+    let friendRequest = this.props.currentUser.friend_requests_as_receiver.find(request => request.requestor_id === friend.id && request.receiver_id === this.props.currentUser.id )
+   
                 let objectConfig2 = {
                     method: 'DELETE',
                     headers: {
@@ -87,14 +111,22 @@ class NavBar extends Component{
                     })
                 }
                  fetch(`http://localhost:3000/friend_requests/${friendRequest.id}`, objectConfig2)
+                 .then(this.updateUser())
+                
                  
-                 fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
-                 .then(res => res.json())
-                 .then(user =>  {
-                     this.props.setCurrentUser(user)
-                     this.createFriendRequestsHash()
-                    })
-                 
+     }
+
+    
+
+     updateUser = () => {
+        
+         fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
+         .then(res => res.json())
+         .then(user => this.props.setCurrentUser(user))
+         
+         fetch('http://localhost:3000/users')
+         .then(res => res.json())
+         .then((users) => this.createFriendRequestsHash(users))
      }
 
      componentDidMount = () => {
@@ -149,7 +181,7 @@ class NavBar extends Component{
                 </Dropdown>
                 </div>
               : null }
-                <div id= 'profPicDiv' class="dropdown show">
+                <div id= 'profPicDiv' className="dropdown show">
                     <img data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                     id='navProfilePic' 
                     src='https://i.imgur.com/e225YR5.jpg' 
@@ -163,6 +195,8 @@ class NavBar extends Component{
                     
                     <Link className="dropdown-item" to="/MyStories">My Stories</Link>
                   
+                    <Link className="dropdown-item" to="/new">New Story</Link>
+
                     <i id='logOut' className="dropdown-item" onClick={() => this.props.setCurrentUser(null)}>Log out</i>
                
                 </div>
@@ -191,7 +225,10 @@ const mapDispatchToProps = (dispatch) => {
 
     return {
         setStories: () => dispatch(actions.setStories()),
-        setCurrentUser: (user) => dispatch(actions.setCurrentUser(user))}
+        setCurrentUser: (user) => dispatch(actions.setCurrentUser(user)),
+        getUsers:               () => dispatch(actions.getUsers()),
+
+    }
     
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar)

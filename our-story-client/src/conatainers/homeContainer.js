@@ -29,8 +29,10 @@ import     * as actions                   from '../actionsDirectory/actions';
         return(
             <Fragment>
             <NavBar/>
-            <Link to="/new">New Story</Link>
-             <Grid stackable columns={2}>
+     
+            <div id="homeImage">
+
+             <Grid id="homeStoryCard" stackable columns={2}>
                 <Grid.Column>
                   <Segment className="userSegment">
              <HomeUserContainer/>
@@ -42,6 +44,7 @@ import     * as actions                   from '../actionsDirectory/actions';
                 </Segment>
                 </Grid.Column>
             </Grid> 
+            </div>
             </Fragment>
         )
     }
@@ -51,8 +54,7 @@ const mapStateToProps = (state) =>{
    
    
             return {
-                currentUser: state.currentUser,
-            
+                currentUser: state.currentUser
             }
           
         }
@@ -60,9 +62,8 @@ const mapStateToProps = (state) =>{
         const mapDispatchToProps = (dispatch) => {
 
             return {
-              
-                setCurrentUser: (user) => dispatch(actions.setCurrentUser(user))}
-            
+
+                setCurrentUser: (user) => dispatch(actions.setCurrentUser(user))}    
         }
         
 

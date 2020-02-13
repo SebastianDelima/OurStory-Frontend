@@ -4,7 +4,7 @@ import Swal                           from 'sweetalert2';
 import     * as actions               from '../actionsDirectory/actions';
 import { NavLink,  Redirect}          from 'react-router-dom';
 import NavBar                         from '../components/NavBar';
-
+import { Button, Header,  Image, Divider, Modal } from 'semantic-ui-react'
 
 
 
@@ -79,11 +79,8 @@ class EditStory extends Component{
 
         fetch(`http://localhost:3000/stories/${this.state.storyId}`, objectConfig)
         .then(res => res.json())
-        .then(() => this.props.setStories())
-        
-        fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
-        .then(res => res.json())
-        .then(user =>  this.props.setCurrentUser(user))
+        .then(() => {this.props.setStories()
+                   this.updateUser()})
         
     }
 
@@ -98,7 +95,10 @@ class EditStory extends Component{
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
+
+
             if (result.value) {
+
                 this.setState({
                     redirect: true
                 })
@@ -109,6 +109,11 @@ class EditStory extends Component{
                 'success'
               )
             }
+            let user_story_id = null
+                this.props.userStories.forEach(story => {
+                   if(story.story_id === this.state.storyId && story.user_id === this.props.currentUser.id)             
+                        user_story_id = story.id
+                })
                 let objectConfig = {
                     method: 'DELETE',
                     headers: {
@@ -116,19 +121,26 @@ class EditStory extends Component{
                     }, 
                     body: JSON.stringify({
     
-                     id: this.state.storyId
+                     id: this.state.storyId,
+                     user_story_id: user_story_id
                     })
                 }
                  fetch(`http://localhost:3000/stories/${this.state.storyId}`, objectConfig)
                  .then(
                      this.setState({
                     redirect: true
-                })).then(
-                    fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
+                })).then( () => {
+                    this.props.setStories()
+                    this.updateUser()})
+          })    
+    }
+
+    updateUser = () => {
+        this.props.setUsers()
+        
+        fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
                     .then(res => res.json())
                     .then(user =>  this.props.setCurrentUser(user))
-                )
-          })    
     }
     
     
@@ -157,8 +169,9 @@ class EditStory extends Component{
     
     render(){
 
-   
+  
         if(this.state.redirect){
+          
             return <Redirect to='/home'/>
         }
 
@@ -175,11 +188,31 @@ class EditStory extends Component{
                  <div className="holes hole-middle"></div>
               <div className="holes hole-bottom"></div>
              <button onClick={() => this.postStoryPoint()}>Add to story</button>
+             <NavLink to='/home'><button>Done</button></NavLink>
              
              {this.state.creator && this.state.story.completed === false ?  <NavLink to='/home'><button onClick={() => this.publishStory()}> Publish Story</button> </NavLink>: null }
              {this.state.creator ?  <button onClick={() => this.deleteStory()}>Delete Story</button>: null }
              </div>
- 
+             { this.state.story ? 
+             <Modal trigger={<Button>Check Story</Button>}>
+    <Modal.Header>{this.state.story.title}</Modal.Header>
+    <Modal.Content image>
+      <Image wrapped size='medium' src={this.state.story.image} />
+      <Modal.Description>
+        <Header>{this.state.story.title}</Header>
+         {this.state.story.story_points.map(point => 
+         <div>
+            <div>{point.content}</div>
+    <i>written by: {point.user_name}</i>
+    <Divider/>
+    </div>
+    )}
+      </Modal.Description>
+    </Modal.Content>
+   
+  </Modal> : null}
+
+
          </Fragment>
               )
      
@@ -208,7 +241,10 @@ const mapStateToProps = (state) =>{
 
             return {
                 setStories: () => dispatch(actions.setStories()),
-                setCurrentUser: (user) => dispatch(actions.setCurrentUser(user))}
+                setCurrentUser: (user) => dispatch(actions.setCurrentUser(user)),
+                setUsers:       () => dispatch(actions.getUsers())
+
+            }
             
         }
         

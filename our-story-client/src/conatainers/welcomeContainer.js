@@ -64,7 +64,8 @@ import Swal from 'sweetalert2'
                 title: 'Error!',
                 text: 'Wrong Username!',
                 icon: 'error',
-                confirmButtonText: 'Cool'
+                confirmButtonText: 'Cool',
+                backdrop: false
               })
                 }
          }
@@ -103,6 +104,9 @@ import Swal from 'sweetalert2'
          }
       }
       
+      componentDidMount(){
+        this.props.setFriendRequests()
+      }
 
     render(){
           
@@ -170,7 +174,7 @@ import Swal from 'sweetalert2'
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
              <div onClick={(e) => this.logInUser(e)}>
-              <NavLink to='/home' type="button" className="btn btn-secondary" onKeyPress={ this.logInUser} >Log in</NavLink>
+              <button to='/home' type="button" className="btn btn-secondary" >Log in</button>
              </div>
              
             </div>
@@ -188,8 +192,8 @@ import Swal from 'sweetalert2'
 const mapDispatchToProps = (dispatch) => {
 
     return {
-        setCurrentUser: (user) => dispatch(actions.setCurrentUser(user))
-      
+        setCurrentUser: (user) => dispatch(actions.setCurrentUser(user)),
+        setFriendRequests:  () => dispatch(actions.setFriendRequests())
     }
 }
 

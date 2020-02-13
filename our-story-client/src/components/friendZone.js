@@ -14,7 +14,7 @@ class FriendZone extends Component{
 
         this.props.currentUser.friendships.forEach(friendship => { 
             
-           if(friendship.friend_b_id === friendId){
+           if(friendship.friend_b_id === friendId || friendship.friend_a_id === friendId){
 
              friendshipId = friendship.id
            }
@@ -31,17 +31,35 @@ class FriendZone extends Component{
             })
         }
          fetch(`http://localhost:3000/friendships/${friendshipId}`, objectConfig)
-
-         fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
-         .then(res => res.json())
-         .then(user => this.props.setCurrentUser(user))
+         .then(() => {
+             this.props.setFriendRequests()
+             this.updateUser()
+            
+            })
     }
+
+     updateUser = () => {
+        this.props.getUsers()
+        fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
+        .then(res => res.json())
+        .then(user => this.props.setCurrentUser(user))
+     }
 
     render(){
         
-        if(this.props.currentUser){
+        if(this.props.currentUser && this.props.users !== "loading"){
         let friends = []
-        let friend_ids = this.props.currentUser.friendships.map(friend => friend.friend_b_id)
+        let friend_ids = []
+        this.props.currentUser.friendships.forEach(friend => {
+            
+            if (friend.friend_b_id === this.props.currentUser.id){
+               friend_ids.push(friend.friend_a_id)
+            }else {
+                friend_ids.push(friend.friend_b_id)
+            }
+            
+        })
+         
          this.props.users.forEach(user => {
             if(friend_ids.includes(user.id)){
              friends.push(user)
@@ -85,6 +103,7 @@ class FriendZone extends Component{
             
         
             </Fragment>
+        
         )}else{
             return null
         }
@@ -104,9 +123,11 @@ const mapStateToProps = (state) =>{
         const mapDispatchToProps = (dispatch) => {
 
             return {
-                
-                setCurrentUser: (user) => dispatch(actions.setCurrentUser(user))}
-            
+               
+            setFriendRequests:      () => dispatch(actions.setFriendRequests()),
+            getUsers:               () => dispatch(actions.getUsers()),
+            setCurrentUser:     (user) => dispatch(actions.setCurrentUser(user))
+            }
         }
         
 
