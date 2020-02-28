@@ -188,10 +188,10 @@ class EditStory extends Component{
                  <div className="holes hole-middle"></div>
               <div className="holes hole-bottom"></div>
              <button onClick={() => this.postStoryPoint()}>Add to story</button>
-             <NavLink to='/home'><button>Done</button></NavLink>
+             <NavLink to='/home'><button className="bottonCool">Done</button></NavLink>
              
-             {this.state.creator && this.state.story.completed === false ?  <NavLink to='/home'><button onClick={() => this.publishStory()}> Publish Story</button> </NavLink>: null }
-             {this.state.creator ?  <button onClick={() => this.deleteStory()}>Delete Story</button>: null }
+             {this.state.creator && this.state.story.completed === false ?  <NavLink to='/home'><button className="bottonCool" onClick={() => this.publishStory()}> Publish Story</button> </NavLink>: null }
+             {this.state.creator ?  <button className="bottonCool" onClick={() => this.deleteStory()}>Delete Story</button>: null }
              </div>
              { this.state.story ? 
              <Modal trigger={<Button>Check Story</Button>}>
