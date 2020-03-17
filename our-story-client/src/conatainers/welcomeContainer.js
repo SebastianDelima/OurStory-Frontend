@@ -95,7 +95,7 @@ import Swal from 'sweetalert2'
               name: this.state.userInfo.name,
               email: this.state.userInfo.email,
               short_bio: this.state.userInfo.shortBio,
-              img: 'https://i.imgur.com/e225YR5.jpg'
+              img: 'https://cdn4.vectorstock.com/i/1000x1000/77/43/young-man-head-avatar-cartoon-face-character-vector-21757743.jpg'
             })
         }
             fetch('http://localhost:3000/users', objectConfig)
