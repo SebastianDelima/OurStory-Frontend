@@ -184,7 +184,7 @@ class NavBar extends Component{
                 <div id= 'profPicDiv' className="dropdown show">
                     <img data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                     id='navProfilePic' 
-                    src='https://i.imgur.com/e225YR5.jpg' 
+                    src='https://cdn4.vectorstock.com/i/1000x1000/77/43/young-man-head-avatar-cartoon-face-character-vector-21757743.jpg' 
                     className="rounded-circle" 
                     alt='Your image is supposed to be here'/>
 

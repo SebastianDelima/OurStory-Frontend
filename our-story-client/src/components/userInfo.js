@@ -11,7 +11,7 @@ export default class UserInfo extends Component{
               <h1 id='userNameDetails'>{this.props.user.name}</h1>
 
                <h3 id='userBio'>{this.props.user.short_bio}</h3>
-               <img  id='userPic' src='https://i.imgur.com/e225YR5.jpg' className="rounded-circle"/>
+               <img  id='userPic' src='https://cdn4.vectorstock.com/i/1000x1000/77/43/young-man-head-avatar-cartoon-face-character-vector-21757743.jpg' className="rounded-circle"/>
           
            </Container>
         )

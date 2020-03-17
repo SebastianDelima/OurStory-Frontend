@@ -1,8 +1,6 @@
 import  React, { Component, Fragment }  from 'react';
 import  { connect }                     from 'react-redux';
 import   * as actions                   from '../actionsDirectory/actions';
-import { NavLink, Redirect }            from 'react-router-dom';
-import { Input, Menu, Segment }         from 'semantic-ui-react'
 import Swal from 'sweetalert2'
 
 
