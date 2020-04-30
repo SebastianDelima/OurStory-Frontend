@@ -31,7 +31,7 @@ class MyStoriesContainer extends Component {
     render(){
         if(this.props.currentUser && this.props.currentUser.stories !== undefined){
 
-            let completedStories = this.props.currentUser.stories.filter(story => story.completed === true)
+            let completedStories   = this.props.currentUser.stories.filter(story => story.completed === true)
             let uncompletedStories = this.props.currentUser.stories.filter(story => story.completed == false)
            
 
