@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import  { connect }         from 'react-redux';
-import HomeUserCard         from '../components/HomeUserCard'
+import  { connect }                   from 'react-redux';
+import HomeUserCard                   from '../components/HomeUserCard'
 
 class HomeUserContainer extends Component{
       
@@ -13,7 +13,6 @@ class HomeUserContainer extends Component{
       
   componentDidMount = () => {
    
-    
     if(this.props.users !== "loading" && this.props.users && this.props.currentUser){
     let usersArray = []
     let included = "not"
@@ -35,6 +34,7 @@ class HomeUserContainer extends Component{
             included = true
          } 
        })
+       
        this.props.currentUser.friend_requests_as_receiver.forEach(request => {
          
          if(request.requestor_id === user.id){
@@ -58,7 +58,6 @@ class HomeUserContainer extends Component{
               }
               )
             }
-       
       }
     })
 

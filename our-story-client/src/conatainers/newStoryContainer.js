@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import Swal from 'sweetalert2'
-import     * as actions                   from '../actionsDirectory/actions';
-import { Dropdown, Form, Button} from 'semantic-ui-react'
-import NavBar            from '../components/NavBar';
+import { connect }                    from 'react-redux';
+import Swal                           from 'sweetalert2'
+import     * as actions               from '../actionsDirectory/actions';
+import { Dropdown, Form, Button}      from 'semantic-ui-react'
+import NavBar                         from '../components/NavBar';
 
 
 
@@ -177,7 +177,7 @@ import NavBar            from '../components/NavBar';
      }
 
      createUsersHash = () => {
-         
+
         let usersArr   = []
         let friendsIds = []
         let friendsArr = []

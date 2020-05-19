@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { connect }          from 'react-redux';
-import StoryCard            from '../components/StoryCard'
-import NavBar               from '../components/NavBar'
-import {Card, Nav}          from  'react-bootstrap'
+import { connect }                    from 'react-redux';
+import StoryCard                      from '../components/StoryCard'
+import NavBar                         from '../components/NavBar'
+import {Card, Nav}                    from  'react-bootstrap'
 
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Container}          from 'react-bootstrap';
-import { Divider } from 'semantic-ui-react'
+import { Divider }          from 'semantic-ui-react'
 
 export default class UserInfo extends Component{
     render(){

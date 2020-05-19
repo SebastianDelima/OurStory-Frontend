@@ -1,7 +1,7 @@
 import  React, { Component, Fragment }  from 'react';
 import  { connect }                     from 'react-redux';
 import   * as actions                   from '../actionsDirectory/actions';
-import  Swal from 'sweetalert2'
+import  Swal                            from 'sweetalert2'
 
 
 

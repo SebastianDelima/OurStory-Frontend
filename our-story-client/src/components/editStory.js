@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from 'react';
-import { connect }                    from 'react-redux';
-import Swal                           from 'sweetalert2';
-import     * as actions               from '../actionsDirectory/actions';
-import { NavLink,  Redirect}          from 'react-router-dom';
-import NavBar                         from '../components/NavBar';
+import React, { Component, Fragment }             from 'react';
+import { connect }                                from 'react-redux';
+import Swal                                       from 'sweetalert2';
+import     * as actions                           from '../actionsDirectory/actions';
+import { NavLink,  Redirect}                      from 'react-router-dom';
+import NavBar                                     from '../components/NavBar';
 import { Button, Header,  Image, Divider, Modal } from 'semantic-ui-react'
 
 
