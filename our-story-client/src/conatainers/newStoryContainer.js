@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2'
 import     * as actions                   from '../actionsDirectory/actions';
-import { Dropdown, Form, Button, Card, Divider } from 'semantic-ui-react'
+import { Dropdown, Form, Button} from 'semantic-ui-react'
 import NavBar            from '../components/NavBar';
 
 
@@ -179,7 +179,7 @@ import NavBar            from '../components/NavBar';
      }
 
      createUsersHash = () => {
-
+        debugger
         let usersArr = []
         this.props.users.map(user => {
             usersArr.push(
@@ -278,31 +278,6 @@ import NavBar            from '../components/NavBar';
             <button onClick={() => this.postStory('Save')}>Add to story</button>
             
             </div>
-
-
-
-
-
-
-                    {/* <div id='newStoryDiv'>
-                    <span  id='storyContent'className='title'  contentEditable={true} onInput={(e) => this.setStory(e)}>Title goes here...</span>
-                    <p></p>
-                    <span id='storyContent' className='description'  contentEditable={true} onInput={(e) => this.setStory(e)} >Brief description...</span>
-                    <p></p>
-                    <Dropdown onChange={(e) => this.selectFriend(e)}
-                        placeholder='Select Friend'
-                        fluid
-                        multiple
-                        search
-                        selection
-                        options={this.state.users}
-                    />
-                    <input type='text'      className='image' placeholder='Image URL' onChange={(e) => this.setStory(e)}></input>
-                    <p></p>
-                    <span id='storyContent' className='content' contentEditable={true} onInput={(e) => this.setStory(e)}>Write your story here...</span>
-                    <p></p>
-                    <button onClick={() => this.postStory('Save')}>Save</button><button onClick={() => this.postStory()}>Publish</button>
-                    </div> */}
             </Fragment>
         )}
     }
