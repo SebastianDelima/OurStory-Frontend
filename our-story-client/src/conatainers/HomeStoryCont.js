@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import  { connect }         from 'react-redux';
-import HomeStoryTile        from '../components/HomeStoryTile'
-import { Card } from 'react-bootstrap';
+import  { connect }                   from 'react-redux';
+import HomeStoryTile                  from '../components/HomeStoryTile'
+
 
 class HomeStoryContainer extends Component{
       

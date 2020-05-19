@@ -11,7 +11,6 @@ import Swal                            from 'sweetalert2';
    sendFriendRequest = (e) => {
      
      let requestExists   = false
-     let allreadyFriends = false
 
      if(this.props.requests){
      this.props.requests.map(request => {

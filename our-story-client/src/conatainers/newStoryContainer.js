@@ -171,14 +171,13 @@ import NavBar            from '../components/NavBar';
              }
              fetch('http://localhost:3000/user_stories', objectConfig2)
              .then(res => res.json())
-        
-             
 
         })
 
      }
 
      createUsersHash = () => {
+         
         let usersArr   = []
         let friendsIds = []
         let friendsArr = []

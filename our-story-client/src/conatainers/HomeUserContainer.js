@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import  { connect }         from 'react-redux';
 import HomeUserCard         from '../components/HomeUserCard'
-import {Loader, Segment }            from 'semantic-ui-react'
 
 class HomeUserContainer extends Component{
       

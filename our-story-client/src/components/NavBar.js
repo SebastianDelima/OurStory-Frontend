@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import {Link}               from 'react-router-dom'
-import { NavLink } from 'react-router-dom';
-import { Dropdown, Divider} from 'semantic-ui-react'
-
-import {connect}            from 'react-redux';
-import     * as actions                   from '../actionsDirectory/actions';
-import { Badge } from "antd";
+import {Link}                         from 'react-router-dom'
+import { NavLink }                    from 'react-router-dom';
+import { Dropdown}                    from 'semantic-ui-react'
+import {connect}                      from 'react-redux';
+import     * as actions               from '../actionsDirectory/actions';
+import { Badge }                      from "antd";
 
 
 

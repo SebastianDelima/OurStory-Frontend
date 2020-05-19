@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import     NavBar           from '../components/NavBar';
-import HomeStoryContainer   from './HomeStoryCont'
-import HomeUserContainer    from './HomeUserContainer';
-import { Grid, Image, Segment } from 'semantic-ui-react';
-import { Link }             from 'react-router-dom';
-import {connect}  from 'react-redux'
-import     * as actions                   from '../actionsDirectory/actions';
+import     NavBar                     from '../components/NavBar';
+import HomeStoryContainer             from './HomeStoryCont'
+import HomeUserContainer              from './HomeUserContainer';
+import { Grid, Segment }              from 'semantic-ui-react';
+import {connect}                      from 'react-redux'
+import     * as actions               from '../actionsDirectory/actions';
 
 
 
