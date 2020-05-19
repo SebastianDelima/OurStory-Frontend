@@ -179,9 +179,25 @@ import NavBar            from '../components/NavBar';
      }
 
      createUsersHash = () => {
-        debugger
-        let usersArr = []
-        this.props.users.map(user => {
+        let usersArr   = []
+        let friendsIds = []
+        let friendsArr = []
+
+        this.props.currentUser.friendships.forEach(friendship => {
+            if(friendship.friend_a_id === this.props.currentUser.id){
+               friendsIds.push(friendship.friend_b_id)
+            }else{
+               friendsIds.push(friendship.friend_a_id)
+            }
+        })
+        
+        this.props.users.forEach(user => {
+            if(friendsIds.includes(user.id) === true){
+               friendsArr.push(user)
+            }
+        })
+
+        friendsArr.map(user => {
             usersArr.push(
                 {
                     key: user.name,

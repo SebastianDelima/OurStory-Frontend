@@ -1,8 +1,8 @@
 import React, { Component, Fragment }  from 'react';
-import {Card,  Image} from 'semantic-ui-react'
-import     { connect }       from 'react-redux';
-import     * as actions               from '../actionsDirectory/actions';
-import Swal from 'sweetalert2';
+import {Card,  Image}                  from 'semantic-ui-react'
+import     { connect }                 from 'react-redux';
+import     * as actions                from '../actionsDirectory/actions';
+import Swal                            from 'sweetalert2';
 
 
 
@@ -43,7 +43,7 @@ import Swal from 'sweetalert2';
       }, 
       body: JSON.stringify({
         requestor_id: this.props.currentUser.id,
-        receiver_id: parseInt(e.currentTarget.id)
+        receiver_id:  parseInt(e.currentTarget.id)
       })
     }
     fetch('http://localhost:3000/friend_requests', objectConfig)
@@ -93,7 +93,7 @@ render(){
                         {user.isFriend === false && user.request === false ? 
                         <button className={"allButtons"}id={user.user.id} size='mini' color='blue' onClick={(e) => this.sendFriendRequest(e)}>Add friend</button>
                         :null}
-                        {user.request === true ? <i>in friend requests</i> :null }
+                        {user.request  === true ? <i>in friend requests</i> :null }
                         {user.isFriend === true ? <i>friends</i> : null}
                       </Card.Description>
                       </Card.Content>

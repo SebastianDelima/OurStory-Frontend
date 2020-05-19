@@ -97,7 +97,8 @@ class NavBar extends Component{
         
     }
 
-    let friendRequest = this.props.currentUser.friend_requests_as_receiver.find(request => request.requestor_id === friend.id && request.receiver_id === this.props.currentUser.id )
+    let friendRequest = this.props.currentUser.friend_requests_as_receiver.find(request => 
+        request.requestor_id === friend.id && request.receiver_id === this.props.currentUser.id )
    
                 let objectConfig2 = {
                     method: 'DELETE',
@@ -167,11 +168,11 @@ class NavBar extends Component{
                     
                     <i >
 
-                    <Dropdown.Item  key={request.value} {...request}
+                    <Dropdown.Item key={request.value} {...request}
                     />
                     <div >
-                    <button  className='acceptButton' onClick={(e) => this.handleFriendRequest(e, "accept")}> accept </button>
-                    <button  className='declineButton' onClick={(e) => this.handleFriendRequest(e, "decline")}> decline </button>
+                    <button className='acceptButton'  onClick={(e) => this.handleFriendRequest(e, "accept")}> accept </button>
+                    <button className='declineButton' onClick={(e) => this.handleFriendRequest(e, "decline")}> decline </button>
                     </div>
                     </i>
                     

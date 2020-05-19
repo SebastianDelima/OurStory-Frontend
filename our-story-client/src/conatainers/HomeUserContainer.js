@@ -76,9 +76,8 @@ class HomeUserContainer extends Component{
         
         return(
             <Fragment>
-                    <h1 className="a-title">  Community</h1>
-                   
-                        <HomeUserCard users={this.state.users}/>
+              <h1 className="a-title">Community</h1>
+              <HomeUserCard users={this.state.users}/>
           </Fragment>
         )
       }else{
