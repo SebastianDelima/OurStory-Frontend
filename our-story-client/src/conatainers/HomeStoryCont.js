@@ -9,12 +9,10 @@ class HomeStoryContainer extends Component{
     render(){
        
         if(this.props.stories){ 
-
-        let newStories = this.props.stories.reverse().filter(story => story.completed == true)
-        let stories = newStories.slice(0, 6)
-       
         
-
+        let newStories = this.props.stories.filter(story => story.completed == true)
+        let stories = newStories.reverse().slice(0, 6)
+        
         return(
 
         <Fragment>
