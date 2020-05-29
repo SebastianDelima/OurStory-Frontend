@@ -4,7 +4,7 @@ import { NavLink }                    from 'react-router-dom';
 import { Dropdown}                    from 'semantic-ui-react'
 import {connect}                      from 'react-redux';
 import     * as actions               from '../actionsDirectory/actions';
-import { Badge }                      from "antd";
+
 
 
 
@@ -153,9 +153,9 @@ class NavBar extends Component{
                 {this.state.friendRequests ? 
                 
                 <div>
-                    {this.state.friendRequests.length >= 1 ?
+                    {/* {this.state.friendRequests.length >= 1 ?
                     <Badge count={this.state.friendRequests.length} />  : null
-                    }
+                    } */}
                 <Dropdown                   
                 icon='add user'
                 floating
@@ -202,7 +202,7 @@ class NavBar extends Component{
                 </div>
                 </div>
            
-                <p></p>
+            
                
           </nav>
                     </Fragment>

@@ -4,11 +4,6 @@ import   * as actions                   from '../actionsDirectory/actions';
 import  Swal                            from 'sweetalert2'
 
 
-
-
-
-
-
  class WelcomeContainer extends Component{
 
     constructor(){
