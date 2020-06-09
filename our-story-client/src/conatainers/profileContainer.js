@@ -22,7 +22,7 @@ import { Divider }                    from 'semantic-ui-react'
                     <div>
                         <h1 id="storyTitleProfile">Stories Published</h1>
                     <Divider className="storyDivider"/>
-                        <StoryCard stories={this.props.user.stories.filter(story => story.completed === true)}/>
+                        <StoryCard stories={this.props.user.stories.filter(story => !!story.completed)}/>
                     </div>
                   :  <StoryCard userName={this.props.user.name} stories={null}/>}
                 </div>
